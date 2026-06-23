@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   FiArrowRight, 
   FiMail, 
@@ -102,13 +102,6 @@ export default function HomePage() {
   // States for simple mock visual validation on submit
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const dividerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: dividerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const dividerTranslateX = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
 
   useEffect(() => {
     const roleTimer = setInterval(() => {
@@ -271,22 +264,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Kinetic Scrolling Divider */}
-      <div 
-        ref={dividerRef} 
-        className="w-full overflow-hidden py-14 bg-white/[0.01] border-y border-border/20 my-16 select-none pointer-events-none"
-      >
-        <motion.div 
-          style={{ x: dividerTranslateX }} 
-          className="flex whitespace-nowrap gap-10 text-4xl sm:text-6xl md:text-7xl font-clash font-extrabold tracking-wider uppercase text-transparent bg-clip-text [-webkit-text-stroke:1px_rgba(255,255,255,0.08)]"
-        >
-          <span>BUILDING PERFORMANT AND MODERN APPLICATIONS</span>
-          <span className="text-accent-cyan bg-clip-text">/</span>
-          <span>ENGINEERING SCALABLE SYSTEMS</span>
-          <span className="text-accent-indigo bg-clip-text">/</span>
-          <span>BUILDING PERFORMANT AND MODERN APPLICATIONS</span>
-        </motion.div>
-      </div>
 
       {/* Engineered Works Showcase */}
       <section 

@@ -317,11 +317,6 @@ Additional inline overrides: `bg-white/[0.01]`, `bg-white/[0.02]`, `bg-white/[0.
   - **Left**: `AcademicTimeline` — vertical timeline with pulsing dot indicators
   - **Right**: `SkillsGrid` — tabbed skill categories with animated badge grid
 
-### Kinetic Divider (between About & Projects)
-- Full-width overflow-hidden strip with `bg-white/[0.01]` tint
-- Massive `font-clash font-extrabold` outline text in `[-webkit-text-stroke]`
-- Horizontal translation driven by scroll progress via `useTransform`
-- Text: "BUILDING PERFORMANT AND MODERN APPLICATIONS / ENGINEERING SCALABLE SYSTEMS" (repeated)
 
 ### Projects (`#projects`)
 - Section label: `02 / Showcase Registry` in accent-cyan mono

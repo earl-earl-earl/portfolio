@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Image from "next/image";
 
 interface Skill {
   name: string;
@@ -173,12 +174,14 @@ export default function SkillsGrid() {
                 ) : (
                   (skill.iconSlug || skill.iconUrl) && (
                     <div className="w-6 h-6 shrink-0 flex items-center justify-center bg-white/[0.04] rounded-lg p-1">
-                      <img
+                      <Image
                         src={skill.iconUrl || `https://cdn.simpleicons.org/${skill.iconSlug}`}
-                        alt=""
+                        alt={skill.name}
+                        width={24}
+                        height={24}
+                        unoptimized
+                        priority
                         className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
-                        loading="lazy"
-                        decoding="async"
                         onError={(e) => {
                           // Hide broken images if slug doesn't exist
                           (e.target as HTMLElement).style.display = "none";
@@ -192,6 +195,26 @@ export default function SkillsGrid() {
             ))}
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      {/* Preload all non-active category icons immediately after page loads */}
+      <div className="hidden" aria-hidden="true">
+        {Object.values(skillsData).flatMap(skills => skills).map((skill, idx) => {
+          if (skill.svg) return null;
+          const url = skill.iconUrl || (skill.iconSlug ? `https://cdn.simpleicons.org/${skill.iconSlug}` : null);
+          if (!url) return null;
+          return (
+            <Image
+              key={idx}
+              src={url}
+              alt=""
+              width={24}
+              height={24}
+              unoptimized
+              priority
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -232,13 +232,13 @@ export default function HeroCanvas() {
     window.addEventListener("mousemove", handleMouseMove);
 
     // 8. Animation Loop
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
     let animationFrameId: number;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) / 1000;
 
       // Update screen text canvas & texture
       updateTerminalCanvas(elapsedTime);
