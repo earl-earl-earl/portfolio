@@ -3,10 +3,7 @@
   preserveAspectRatio="xMidYMid meet" version="1.0">
   <defs>
     <style>
-      path { fill: #000 }
-      @media (prefers-color-scheme: dark) {
-        path { fill: #fff }
-      }
+      path { fill: #fff }
     </style>
     <clipPath id="ab3a3ea716">
       <path d="M 4 17 L 1229 17 L 1229 500 L 4 500 Z M 4 17 " clip-rule="nonzero" />

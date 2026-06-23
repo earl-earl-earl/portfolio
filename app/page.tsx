@@ -53,7 +53,7 @@ const projectsData: Project[] = [
     • Concurrent inference using ONNX Runtime with thread-safe serving.`,
     icon: "Shield",
     tags: ["Flutter", "Node.js", "Flask", "Detectron2", "Supabase"],
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/earl-earl-earl",
     githubLinks: [
       { label: "Mobile App (Flutter)", url: "https://github.com/earl-earl-earl/insurevis-mobile-app" },
       { label: "Web Portal (Express)", url: "https://github.com/earl-earl-earl/insurevis-web-portal" },
@@ -64,7 +64,7 @@ const projectsData: Project[] = [
       { label: "Mobile App Demo", url: "https://drive.google.com/drive/folders/11rMNHBWA0YmkEhJ5nkBPByA6KXDUd4Cr" },
       { label: "Web Portal Preview", url: "https://insurevis-web-portal.vercel.app/" }
     ],
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
       { label: "AI Accuracy", value: "75%+" },
       { label: "Components", value: "3 Parts" },
@@ -86,8 +86,8 @@ const projectsData: Project[] = [
     • Secure PDF export functionality and CSV/XLSX data import/export systems.`,
     icon: "Activity",
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
-    githubUrl: "https://github.com",
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    githubUrl: "https://github.com/earl-earl-earl",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
       { label: "Branch Coverage", value: "15+" },
       { label: "Analytics", value: "Real-time" },
@@ -110,8 +110,8 @@ const projectsData: Project[] = [
     • Admin dashboard featuring Recharts analytics, nanny approvals, and calendar views.`,
     icon: "Activity",
     tags: ["Next.js", "Expo", "Supabase", "TypeScript", "PayMongo"],
-    githubUrl: "https://github.com",
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    githubUrl: "https://github.com/earl-earl-earl",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
       { label: "Tx Logic", value: "Atomic" },
       { label: "Sections", value: "5+ Areas" },
@@ -134,7 +134,7 @@ const projectsData: Project[] = [
     • Monorepo setup with Turborepo, shared type libraries, and automated CI/CD.`,
     icon: "Cpu",
     tags: ["FastAPI", "Gemini AI", "Playwright", "Redis", "MongoDB"],
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
       { label: "Status", value: "Ongoing" },
       { label: "Engine", value: "Gemini AI" },
@@ -267,7 +267,7 @@ export default function HomePage() {
                 <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
               <motion.a
-                href="https://github.com"
+                href="https://github.com/earl-earl-earl"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -278,7 +278,7 @@ export default function HomePage() {
                 <FaGithub size={20} />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/earl-john-rafael-b4b75b38a"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -635,7 +635,7 @@ export default function HomePage() {
       <footer className="w-full mt-auto py-8 px-6 border-t border-border/20 bg-black/40">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} EARL JOHN</span>
+            <span>&copy; Earl John Rafael, {new Date().getFullYear()}</span>
             <span>|</span>
             <span className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-200">
               <RiNextjsFill size={14} />
@@ -646,7 +646,7 @@ export default function HomePage() {
           {/* Social graph anchors */}
           <div className="flex items-center gap-4">
             <a 
-              href="https://github.com" 
+              href="https://github.com/earl-earl-earl" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
@@ -655,7 +655,7 @@ export default function HomePage() {
               <FaGithub size={18} />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/earl-john-rafael-b4b75b38a" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
@@ -664,7 +664,7 @@ export default function HomePage() {
               <FaLinkedin size={18} />
             </a>
             <a 
-              href="mailto:earl@example.com" 
+              href="mailto:earljohnrafael25@gmail.com" 
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="Send Email"
             >
