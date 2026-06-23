@@ -12,7 +12,7 @@ import {
   FiGithub,
   FiLinkedin
 } from "react-icons/fi";
-import { FaFileCode } from "react-icons/fa6";
+import { FaFileCode, FaGithub, FaLinkedin } from "react-icons/fa6";
 import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
@@ -142,8 +142,8 @@ export default function HomePage() {
         <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-accent-cyan/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent-indigo/5 blur-[120px] pointer-events-none" />
 
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
-          <div className="lg:col-span-8 space-y-6 md:space-y-8 text-left">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-center z-10">
+          <div className="lg:col-span-7 space-y-6 md:space-y-8 text-left">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -185,7 +185,7 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed font-normal"
             >
-              I architect high-performance, containerized web applications and distributed environments. Focused on write efficiency, atomic execution pipelines, and sleek, minimalist UX flows.
+              Specializing in end-to-end architectures, I design and build high-performance backend systems, secure APIs, and intelligent applications. I bridge the gap between complex data logic and user-centric design to deliver scalable, secure, and modern digital solutions.
             </motion.p>
 
             <motion.div
@@ -198,18 +198,32 @@ export default function HomePage() {
                 href="#projects"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-gradient-to-r from-accent-cyan to-accent-indigo text-black hover:opacity-95 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all duration-300 group"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-accent-cyan text-black hover:opacity-95 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all duration-300 group"
               >
                 View My Works 
                 <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
               <motion.a
-                href="#contact"
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
+                aria-label="GitHub Profile"
               >
-                Get In Touch
+                <FaGithub size={20} />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
+                aria-label="LinkedIn Profile"
+              >
+                <FaLinkedin size={20} />
               </motion.a>
             </motion.div>
           </div>
@@ -217,7 +231,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="lg:col-span-4 flex justify-center items-center w-full relative"
+            className="lg:col-span-5 flex justify-center items-center w-full relative"
           >
             <HeroCanvas />
           </motion.div>

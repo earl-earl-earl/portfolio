@@ -17,8 +17,9 @@ export default function HeroCanvas() {
     const scene = new THREE.Scene();
 
     // 2. Camera setup
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 7.5);
+    const aspect = width / height;
+    const camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
+    camera.position.set(0, 0, aspect < 1 ? 7.5 * (1 / aspect) : 7.5);
 
     // 3. Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -273,7 +274,9 @@ export default function HeroCanvas() {
       const w = containerRef.current.clientWidth;
       const h = containerRef.current.clientHeight;
       
-      camera.aspect = w / h;
+      const asp = w / h;
+      camera.aspect = asp;
+      camera.position.z = asp < 1 ? 7.5 * (1 / asp) : 7.5;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };

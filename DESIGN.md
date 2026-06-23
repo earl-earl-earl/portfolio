@@ -61,12 +61,10 @@ The palette follows a **Premium Minimalist Dark** theme anchored in deep obsidia
 --radius:              0.75rem
 ```
 
-### Accent Color Usage Rules
-
-- **Accent Cyan** (`#06b6d4`): Primary interactive highlights, glows, focus rings, active badges, CTA button gradients, pulsing dot indicators, metric values.
+- **Accent Cyan** (`#06b6d4`): Primary interactive highlights, glows, focus rings, active badges, CTA buttons (solid), pulsing dot indicators, metric values.
 - **Accent Indigo** (`#6366f1`): Secondary section labels, gradient endpoints, milestone icons, philosophy card accents.
-- **Both combined** as a left-to-right gradient (`from-accent-cyan to-accent-indigo`): CTA buttons, active skill tab pill, animated role text.
-- Accents appear at **low opacity** (`/5`, `/10`, `/20`) for subtle ambient background glows and borders — never solid except for interactive text or gradient surfaces.
+- **Both combined** as a left-to-right gradient (`from-accent-cyan to-accent-indigo`): active skill tab pill, animated role text.
+- Accents appear at **low opacity** (`/5`, `/10`, `/20`) for subtle ambient background glows and borders — never solid except for interactive text, solid CTA buttons, or gradient surfaces.
 
 ### Selection Highlight
 
@@ -376,7 +374,7 @@ Mobile-specific:
 
 | Variant           | Classes                                                                                             |
 |-------------------|-----------------------------------------------------------------------------------------------------|
-| Primary Gradient  | `bg-gradient-to-r from-accent-cyan to-accent-indigo text-black rounded-full shadow-[0_4px_20px_rgba(6,182,212,0.25)]` |
+| Primary Solid     | `bg-accent-cyan text-black rounded-full shadow-[0_4px_20px_rgba(6,182,212,0.25)]`                   |
 | Ghost / Outline   | `border border-border bg-white/[0.02] hover:bg-white/[0.05] rounded-full`                          |
 | Accent Ghost      | `bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan hover:bg-accent-cyan/20 rounded-full` |
 
