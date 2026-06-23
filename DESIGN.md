@@ -326,9 +326,9 @@ Additional inline overrides: `bg-white/[0.01]`, `bg-white/[0.02]`, `bg-white/[0.
 ### Philosophy (`#philosophy`)
 - Section label: `03 / System Mindset` in accent-indigo mono
 - 3-column card grid:
-  - **Performance Ethos** — Zap icon, cyan accent
-  - **Decoupled Architecture** — Activity icon, indigo accent
-  - **Lightweight Footprint** — Box icon, neutral
+  - **Distributed Ecosystems** — Zap icon, cyan accent
+  - **Intelligent Engineering** — Activity icon, indigo accent
+  - **Production-First Mindset** — Box icon, neutral
 
 ### Contact (`#contact`)
 - Section label: `04 / Dialogue Portal` in accent-cyan mono

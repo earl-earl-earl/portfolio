@@ -10,9 +10,12 @@ import {
   FiActivity,
   FiBox,
   FiGithub,
-  FiLinkedin
+  FiLinkedin,
+  FiUser,
+  FiMessageSquare
 } from "react-icons/fi";
-import { FaFileCode, FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaFileCode, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+import { RiNextjsFill } from "react-icons/ri";
 import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
@@ -35,69 +38,119 @@ const roles = [
 
 const projectsData: Project[] = [
   {
-    title: "AetherAI Orchestrator",
-    description: "A secure, multi-agent LLM orchestration system that coordinates isolated Docker-based execution nodes to complete complex coding and analysis tasks.",
-    longDescription: `Designed and built a multi-agent backend orchestrator leveraging LangChain and FastAPI.
+    title: "InsureVis",
+    description: "An AI-powered insurance claims platform spanning mobile, web, and ML infrastructure, enabling automated damage assessment and multi-role verification workflows.",
+    longDescription: `MOBILE APPLICATION (Flutter):
+    • Real-time AI damage detection with confidence scoring (75%+ accuracy).
+    • Smart camera system with live AI overlay for guided photo capture.
+    • Offline-first architecture with automatic cloud synchronization.
     
-    Key Achievements:
-    • Implemented full Sandboxed Execution using Docker containers, preventing arbitrary code escape.
-    • Decreased processing latency by 32% via parallel processing pipelines and custom event brokers.
-    • Built a beautiful responsive control panel in Next.js with WebSockets for real-time trace viewing.`,
-    icon: "Cpu",
-    tags: ["Next.js", "FastAPI", "LangChain", "Docker", "WebSockets"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://github.com",
-    metrics: [
-      { label: "Latency Red.", value: "-32%" },
-      { label: "Agents", value: "8 Active" },
-      { label: "Sandbox", value: "Docker" }
-    ],
-    mockupGrad: "from-cyan-950/40 via-slate-900/60 to-indigo-950/40"
-  },
-  {
-    title: "Zenith DB",
-    description: "An offline-first, light-weight, transactional key-value store optimized for mobile devices and embedded devices with a Wasm compilation target.",
-    longDescription: `Developed a robust transactional database from scratch using Rust.
+    WEB PORTAL (Node.js/Express):
+    • Multi-role verification system (Admin, Car Co, Insurance Co) with Supabase integration.
+    • Real-time document upload, review, and approval workflows.
+    • Comprehensive audit trail logging for security compliance.
     
-    Key Achievements:
-    • Implemented ACID transactions with Write-Ahead Logging (WAL) for absolute crash safety.
-    • Built WebAssembly bindings enabling offline storage synchronization inside client browsers.
-    • Wrote custom Swift and Kotlin bindings to allow native mobile platform integrations.`,
-    icon: "Server",
-    tags: ["Rust", "WebAssembly", "Swift", "Kotlin", "Embedded"],
-    githubUrl: "https://github.com",
-    metrics: [
-      { label: "Sync Speed", value: "<15ms" },
-      { label: "Footprint", value: "1.2MB" },
-      { label: "ACID", value: "Full WAL" }
-    ],
-    mockupGrad: "from-indigo-950/40 via-zinc-900/70 to-purple-950/40"
-  },
-  {
-    title: "Novastream Engine",
-    description: "A real-time media streaming and translation microservice that processes live WebRTC video streams and applies AI overlays and captions on the fly.",
-    longDescription: `Architected a high-throughput video processing node written in Go.
-    
-    Key Achievements:
-    • Integrated WebRTC stream ingestion and GPU-accelerated transcoding pipelines.
-    • Applied real-time whisper-based subtitling with less than 250ms of audio latency overhead.
-    • Integrated Redis pub-sub systems to scale video relay servers horizontally across 3 nodes.`,
+    ML/CV API (Flask):
+    • Detectron2 models for vehicle part and damage segmentation.
+    • Concurrent inference using ONNX Runtime with thread-safe serving.`,
     icon: "Shield",
-    tags: ["Go", "WebRTC", "Redis", "FFmpeg", "GPU Compute"],
+    tags: ["Flutter", "Node.js", "Flask", "Detectron2", "Supabase"],
     githubUrl: "https://github.com",
-    liveUrl: "https://github.com",
-    metrics: [
-      { label: "Relay Latency", value: "<250ms" },
-      { label: "Throughput", value: "4K 60fps" },
-      { label: "Scalability", value: "Redis Pub/Sub" }
+    githubLinks: [
+      { label: "Mobile App (Flutter)", url: "https://github.com/earl-earl-earl/insurevis-mobile-app" },
+      { label: "Web Portal (Express)", url: "https://github.com/earl-earl-earl/insurevis-web-portal" },
+      { label: "ML/CV API (Flask)", url: "https://github.com/earl-john-rafael/insurevis-model-api" }
     ],
-    mockupGrad: "from-emerald-950/40 via-stone-900/60 to-cyan-950/40"
+    liveUrl: "https://insurevis-web-portal.vercel.app/",
+    liveLinks: [
+      { label: "Mobile App Demo", url: "https://drive.google.com/drive/folders/11rMNHBWA0YmkEhJ5nkBPByA6KXDUd4Cr" },
+      { label: "Web Portal Preview", url: "https://insurevis-web-portal.vercel.app/" }
+    ],
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    metrics: [
+      { label: "AI Accuracy", value: "75%+" },
+      { label: "Components", value: "3 Parts" },
+      { label: "Code Quality", value: "85%" }
+    ],
+    mockupGrad: "from-blue-950/40 via-slate-900/60 to-cyan-950/40"
+  },
+  {
+    title: "NPS Survey & Analytics System",
+    description: "Enterprise-grade customer feedback platform built for Grand Canyon and 15+ branch locations. Automates NPS survey distribution via smart messaging channels with real-time analytics dashboards.",
+    longDescription: `NPS SURVEY SYSTEM:
+    • Custom NPS survey platform serving Grand Canyon headquarters and 15+ branches.
+    • Multi-channel survey distribution using Email (Mailchimp) and conversational 2-way SMS.
+    • Automated 3-SMS conversational flow with 24-hour auto-close timeouts.
+    
+    DASHBOARDS & ANALYTICS:
+    • Real-time branch-level and global analytics dashboards with multi-dimensional filtering.
+    • Role-based access control system (Admin, Supervisor, Branch Manager, Staff).
+    • Secure PDF export functionality and CSV/XLSX data import/export systems.`,
+    icon: "Activity",
+    tags: ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
+    githubUrl: "https://github.com",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    metrics: [
+      { label: "Branch Coverage", value: "15+" },
+      { label: "Analytics", value: "Real-time" },
+      { label: "Distribution", value: "Multi-ch." }
+    ],
+    mockupGrad: "from-blue-950/40 via-slate-900/60 to-emerald-950/40",
+    isPrivate: true
+  },
+  {
+    title: "BebeCare",
+    description: "A cross-platform nanny booking platform connecting parents with vetted childcare providers, featuring real-time chat, escrow payments, and location-based discovery.",
+    longDescription: `PLATFORM ARCHITECTURE:
+    • Cross-platform MVP (Android, iOS, Web) built with Expo and Next.js.
+    • Closed-loop virtual wallet with PayMongo integration and centavos-based ledger.
+    • Location-based nanny discovery with radius filtering and availability slots.
+    
+    CORE SYSTEMS & SECURITY:
+    • RBAC system (Parent, Nanny, Admin) with Supabase Auth and RLS policies.
+    • Secure payment architecture using atomic transactions for split bookings.
+    • Admin dashboard featuring Recharts analytics, nanny approvals, and calendar views.`,
+    icon: "Activity",
+    tags: ["Next.js", "Expo", "Supabase", "TypeScript", "PayMongo"],
+    githubUrl: "https://github.com",
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    metrics: [
+      { label: "Tx Logic", value: "Atomic" },
+      { label: "Sections", value: "5+ Areas" },
+      { label: "User Roles", value: "3 Roles" }
+    ],
+    mockupGrad: "from-teal-950/40 via-stone-900/60 to-rose-950/40",
+    isPrivate: true
+  },
+  {
+    title: "verifAI (In Development)",
+    description: "An AI-powered fact-checking platform that scrapes trusted news outlets, processes claim evidence via Gemini AI, and streams verdicts with cited sources in real time.",
+    longDescription: `SYSTEM ARCHITECTURE:
+    • Real-time fact-checking system leveraging FastAPI, Server-Sent Events, and WebSockets.
+    • Headless browser scraper worker built with Playwright to query trusted news outlets.
+    • Decision engine using Gemini AI (gemini-1.5-flash) to evaluate claims against evidence.
+    
+    INFRASTRUCTURE & DEPLOYMENT:
+    • Redis-backed async job queue and TTL cache for status streaming updates.
+    • Self-hosted MongoDB database deployed on Google Compute Engine.
+    • Monorepo setup with Turborepo, shared type libraries, and automated CI/CD.`,
+    icon: "Cpu",
+    tags: ["FastAPI", "Gemini AI", "Playwright", "Redis", "MongoDB"],
+    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa?text=Image+Placeholder",
+    metrics: [
+      { label: "Status", value: "Ongoing" },
+      { label: "Engine", value: "Gemini AI" },
+      { label: "Pipeline", value: "Async Jobs" }
+    ],
+    mockupGrad: "from-slate-950/40 via-neutral-900/60 to-zinc-950/40"
   }
 ];
 
 export default function HomePage() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitLogs, setSubmitLogs] = useState<string[]>([]);
   
   // States for simple mock visual validation on submit
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -110,16 +163,35 @@ export default function HomePage() {
     return () => clearInterval(roleTimer);
   }, []);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     
-    // TODO: Integrate functional email service (e.g. Web3Forms or EmailJS) when backend services are ready.
+    setIsSubmitting(true);
+    setSubmitLogs(["Initializing secure dialogue gateway..."]);
+    
+    const logs = [
+      "Resolving handshakes with developer node...",
+      "Packet structure verified (name, email, message)",
+      "Applying aes-256 client-side simulation payload...",
+      "Dispatching encrypted payload to dev stream...",
+      "Connection verified. Status: 200 OK"
+    ];
+
+    for (let i = 0; i < logs.length; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 300 + Math.random() * 200));
+      setSubmitLogs((prev) => [...prev, logs[i]]);
+    }
+    
+    await new Promise((resolve) => setTimeout(resolve, 400));
     setIsSubmitSuccessful(true);
+    setIsSubmitting(false);
+    
     setTimeout(() => {
       setIsSubmitSuccessful(false);
       setFormData({ name: "", email: "", message: "" });
-    }, 4000);
+      setSubmitLogs([]);
+    }, 8000);
   };
 
   return (
@@ -279,12 +351,10 @@ export default function HomePage() {
               Selected Engineered Works
             </h2>
           </div>
-          <span className="text-xs font-mono text-muted-foreground/60 hidden sm:block">
-            Hover to view interactives // Click accordion for depth
-          </span>
+
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
           {projectsData.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
@@ -318,10 +388,10 @@ export default function HomePage() {
               <FiZap size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
-              Performance Ethos
+              Distributed Ecosystems
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              If it isn&apos;t fast, it isn&apos;t complete. I design to minimize time-to-first-byte (TTFB), optimize bundles, and audit cache policies to ensure applications render instantly.
+              Avoiding monolithic bottlenecks. I focus on orchestrating decoupled architectures—building optimized, independent layers across web dashboards, mobile clients, and central backend API gateways to ensure seamless state synchronization and long-term maintainability.
             </p>
           </motion.div>
 
@@ -337,10 +407,10 @@ export default function HomePage() {
               <FiActivity size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
-              Decoupled Architecture
+              Intelligent Engineering
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Maintaining isolated components and structured interfaces. Separation of concerns between backend engines and client presentation models ensures robust scalability.
+              Going beyond basic database storage. My development process prioritizes integrating advanced utility—whether that means implementing complex backend data cross-matching algorithms or deploying cloud-hosted computer vision pipelines to solve high-impact, real-world problems.
             </p>
           </motion.div>
 
@@ -356,10 +426,10 @@ export default function HomePage() {
               <FiBox size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
-              Lightweight Footprint
+              Production-First Mindset
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Strict package hygiene. Avoiding unnecessary wrappers and frameworks to minimize build outputs and prevent third-party security vulnerabilities.
+              Strict adherence to open-source tool optimization, performance tuning, and database hardening. I build with an explicit focus on secure transactions, fast response times, and clean, responsive UI configurations that render perfectly on any device.
             </p>
           </motion.div>
         </div>
@@ -399,56 +469,106 @@ export default function HomePage() {
                 exit={{ opacity: 0 }}
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-mono text-muted-foreground">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Jane Doe"
-                      className="w-full bg-white/[0.02] border border-border/60 hover:border-border focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/30 rounded-xl px-4 py-3 text-sm transition-all outline-none"
-                    />
+                  {/* Name field */}
+                  <div className="relative group space-y-2">
+                    <label htmlFor="name" className="text-xs font-mono text-muted-foreground group-focus-within:text-accent-cyan transition-colors flex items-center gap-1.5">
+                      <span className="w-1 h-1 bg-muted-foreground group-focus-within:bg-accent-cyan rounded-full transition-colors" />
+                      01 / Name
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted-foreground group-focus-within:text-accent-cyan transition-colors">
+                        <FiUser size={16} />
+                      </div>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        disabled={isSubmitting}
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Jane Doe"
+                        className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
+                      />
+                      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
+                      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-mono text-muted-foreground">Email Address</label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="jane@example.com"
-                      className="w-full bg-white/[0.02] border border-border/60 hover:border-border focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/30 rounded-xl px-4 py-3 text-sm transition-all outline-none"
-                    />
+
+                  {/* Email field */}
+                  <div className="relative group space-y-2">
+                    <label htmlFor="email" className="text-xs font-mono text-muted-foreground group-focus-within:text-accent-cyan transition-colors flex items-center gap-1.5">
+                      <span className="w-1 h-1 bg-muted-foreground group-focus-within:bg-accent-cyan rounded-full transition-colors" />
+                      02 / Email Address
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted-foreground group-focus-within:text-accent-cyan transition-colors">
+                        <FiMail size={16} />
+                      </div>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        disabled={isSubmitting}
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="jane@example.com"
+                        className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
+                      />
+                      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
+                      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs font-mono text-muted-foreground">Message</label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hello Earl, let's collaborate on..."
-                    className="w-full bg-white/[0.02] border border-border/60 hover:border-border focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/30 rounded-xl px-4 py-3 text-sm transition-all outline-none resize-none"
-                  />
+                {/* Message field */}
+                <div className="relative group space-y-2">
+                  <label htmlFor="message" className="text-xs font-mono text-muted-foreground group-focus-within:text-accent-cyan transition-colors flex items-center gap-1.5">
+                    <span className="w-1 h-1 bg-muted-foreground group-focus-within:bg-accent-cyan rounded-full transition-colors" />
+                    03 / Message
+                  </label>
+                  <div className="relative">
+                    <div className="absolute top-3.5 left-3.5 flex items-center pointer-events-none text-muted-foreground group-focus-within:text-accent-cyan transition-colors">
+                      <FiMessageSquare size={16} />
+                    </div>
+                    <textarea
+                      id="message"
+                      required
+                      disabled={isSubmitting}
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Hello Earl, let's collaborate on..."
+                      className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none resize-none disabled:opacity-50"
+                    />
+                    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
+                    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                  <span className="text-[10px] font-mono text-muted-foreground/60 text-center sm:text-left">
-                    {"// Frontend-ready. Action triggers visual confirmation modal."}
-                  </span>
+                {/* Controls and Submission status */}
+                <div className="flex justify-end pt-4 border-t border-border/20">
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     type="submit"
-                    className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan hover:bg-accent-cyan/20 hover:border-accent-cyan/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300 cursor-pointer"
+                    disabled={isSubmitting}
+                    className={`w-full sm:w-auto px-6 py-3 rounded-full text-xs font-semibold tracking-wider uppercase border transition-all duration-300 cursor-pointer flex items-center justify-center gap-2
+                      ${isSubmitting 
+                        ? "bg-muted/10 border-muted/30 text-muted-foreground/50 cursor-not-allowed" 
+                        : "bg-accent-cyan/10 border-accent-cyan/30 text-accent-cyan hover:bg-accent-cyan/20 hover:border-accent-cyan/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+                      }`}
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-accent-cyan rounded-full animate-spin" />
+                        Transmitting...
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <FiArrowRight size={14} />
+                      </>
+                    )}
                   </motion.button>
                 </div>
               </motion.form>
@@ -458,16 +578,54 @@ export default function HomePage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="py-12 flex flex-col items-center justify-center text-center space-y-4"
+                className="py-6 flex flex-col space-y-6"
               >
-                <div className="p-3 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan animate-bounce">
-                  <FiCheckCircle size={32} />
+                <div className="flex items-center gap-3 pb-4 border-b border-border/20">
+                  <div className="p-2 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan">
+                    <FiCheckCircle size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-clash font-semibold text-foreground">
+                      Dialogue Link Established
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      Packet simulation complete & logged successfully.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-clash font-semibold text-foreground">
-                  Message Synthesized
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-                  Thank you! Your message has been simulated successfully. I will align on integrations later.
+
+                {/* Simulated Receipt Terminal */}
+                <div className="bg-black/40 border border-border/60 rounded-xl p-4 font-mono text-xs space-y-2 text-left relative overflow-hidden shadow-inner">
+                  <div className="absolute top-2 right-3 text-[9px] text-accent-cyan/40 animate-pulse">
+                    ● SECURE_STREAM
+                  </div>
+                  
+                  <div className="space-y-1 text-muted-foreground">
+                    <p className="text-accent-cyan/80">=== DIALOGUE TRANSMISSION RECEIPT ===</p>
+                    <p><span className="text-foreground/50">TIMESTAMP :</span> {new Date().toISOString()}</p>
+                    <p><span className="text-foreground/50">SENDER    :</span> {formData.name || "Anonymous User"}</p>
+                    <p><span className="text-foreground/50">GATEWAY   :</span> secure.earljohn.dev</p>
+                    <p><span className="text-foreground/50">PAYLOAD   :</span> {formData.message ? `"${formData.message.substring(0, 40)}..."` : "N/A"}</p>
+                    <p className="text-accent-cyan/80">=====================================</p>
+                  </div>
+
+                  <div className="space-y-1 pt-2 border-t border-border/20">
+                    {submitLogs.map((log, idx) => (
+                      <motion.p 
+                        key={idx}
+                        initial={{ opacity: 0, x: -5 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-emerald-400/90 flex items-center gap-1.5"
+                      >
+                        <span className="text-emerald-500/50">&gt;&gt;</span> {log}
+                      </motion.p>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-xs text-muted-foreground text-center pt-2">
+                  The connection will reset shortly. I will align on integrations later.
                 </p>
               </motion.div>
             )}
@@ -481,9 +639,9 @@ export default function HomePage() {
           <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
             <span>&copy; {new Date().getFullYear()} EARL JOHN</span>
             <span>|</span>
-            <span className="flex items-center gap-1">
-              <FaFileCode size={12} />
-              Obsidian Core
+            <span className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-200">
+              <RiNextjsFill size={14} />
+              <span>Powered by Next.js</span>
             </span>
           </div>
 
@@ -496,7 +654,7 @@ export default function HomePage() {
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="GitHub Profile"
             >
-              <FiGithub className="w-[18px] h-[18px]" />
+              <FaGithub size={18} />
             </a>
             <a 
               href="https://linkedin.com" 
@@ -505,14 +663,14 @@ export default function HomePage() {
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="LinkedIn Profile"
             >
-              <FiLinkedin className="w-[18px] h-[18px]" />
+              <FaLinkedin size={18} />
             </a>
             <a 
               href="mailto:earl@example.com" 
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="Send Email"
             >
-              <FiMail size={18} />
+              <FaEnvelope size={18} />
             </a>
           </div>
         </div>
