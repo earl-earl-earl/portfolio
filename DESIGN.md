@@ -160,9 +160,9 @@ border-y border-border/20 bg-white/[0.01]
 
 - Fixed position, full-width (`fixed top-0 left-0 right-0 z-50`)
 - **Transparent** when at top (`bg-transparent py-6`)
-- **Frosted glass** when scrolled > 20px: `bg-background/70 backdrop-blur-md border-b border-border/40 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.3)]`
-- **Logo**: SVG image at `/images/logos/page-logo.svg` (40×40), scale hover animation
-- **Desktop Nav**: Horizontal pills with a shared `layoutId="nav-hover-pill"` Framer Motion background that slides between hovered links
+- **Frosted glass** when scrolled > 20px: `bg-background/70 backdrop-blur-md border-b border-border/40 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.3)]`
+- **Logo**: SVG image at `/images/logos/page-logo.svg` (32×32), scale hover animation
+- **Desktop Nav**: Horizontal pills with a shared `layoutId="nav-hover-pill"` Framer Motion background that slides between hovered links (Intro, About, Projects, Philosophy, Connect)
 - **CTA Button**: Gradient pill (`from-accent-cyan to-accent-indigo`) with `ArrowUpRight` icon, labeled "Resume"
 - **Mobile Nav**: Hamburger toggle (Menu/X icon) opening a full-screen overlay drawer with `AnimatePresence` fade+slide animation
 

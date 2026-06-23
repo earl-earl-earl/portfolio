@@ -34,7 +34,7 @@ export default function AcademicTimeline() {
           className="relative"
         >
           {/* Pulsing neon dot indicator */}
-          <span className="absolute -left-8.75 md:-left-10.75 top-1.5 flex h-4 w-4 items-center justify-center">
+          <span className="absolute -left-6 md:-left-8 -translate-x-1/2 top-1.5 flex h-4 w-4 items-center justify-center">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan/40 opacity-75"></span>
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_10px_rgba(6,182,212,0.8)]"></span>
           </span>

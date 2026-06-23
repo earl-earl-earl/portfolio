@@ -319,7 +319,7 @@ export default function HomePage() {
           {/* Timeline Column */}
           <div className="space-y-8">
             <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground border-b border-border/30 pb-2">
-              Education & Milestones
+              Education
             </h3>
             <AcademicTimeline />
           </div>

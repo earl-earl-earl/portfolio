@@ -50,70 +50,264 @@ export default function HeroCanvas() {
     textCanvas.height = 384;
     const ctx = textCanvas.getContext("2d");
 
-    // Code lines to simulate terminal output
-    const codeSnippets = [
-      "const cluster = require('cluster');",
-      "const os = require('os');",
-      "import { Aether } from 'orchestrator';",
-      "Initializing sandboxed execution...",
-      "Status: ACTIVE [127.0.0.1]",
-      "DB Connect: OK (ZenithDB)",
-      "Streaming captions node: ON",
-      "Latency: 12ms",
-      "Optimization score: 98%",
-      "Memory leak audit: PASS",
-      "Garbage Collector triggered.",
-      "Aether orchestrating 8 agents...",
-      "Waiting for next job pipeline...",
-      "npm run dev --host --secure",
-      "Server listening on port 3000",
-      "Compilation successful in 250ms"
+    // Simulated code lines to type out
+    const codeLines = [
+      "// Antigravity AI IDE",
+      "import { Antigravity } from 'antigravity';",
+      "import { Canvas } from '@react-three/fiber';",
+      "",
+      "export default function Portfolio() {",
+      "  const agent = new Antigravity({",
+      "    model: 'Gemini 3.5 Flash',",
+      "    mode: 'planning'",
+      "  });",
+      "",
+      "  return (",
+      "    <Workspace>",
+      "      <Editor file='HeroCanvas.tsx' />",
+      "      <AgentPanel status='editing' />",
+      "    </Workspace>",
+      "  );",
+      "}"
     ];
 
-    const activeLines: string[] = ["$ systemctl start aether-orchestrator", "Loading environment modules..."];
-    let lastLineTime = 0;
+    const assistantLog = [
+      "User: make laptop code in IDE",
+      "Antigravity: Analyzing files...",
+      "Antigravity: Planning edit...",
+      "Tool: replace_file_content",
+      "Antigravity: Writing code...",
+      "Antigravity: Running linter...",
+      "Antigravity: Build successful! ✨"
+    ];
 
+    let tick = 0;
+
+    const drawHighlightedText = (text: string, x: number, y: number) => {
+      if (!ctx) return;
+      // split by spaces, words, and symbols to apply highlighting
+      const tokens = text.split(/(\s+|=|>|<|\(|\)|\{|\}|\[|\]|;|,|\.|\/|'[^']*'|"[^"]*")/g);
+      let currentX = x;
+      tokens.forEach(token => {
+        if (!token) return;
+        if (/^\s+$/.test(token)) {
+          currentX += ctx.measureText(token).width;
+        } else if (token.startsWith("'") || token.startsWith('"')) {
+          ctx.fillStyle = "#10b981"; // Green for strings
+          ctx.fillText(token, currentX, y);
+          currentX += ctx.measureText(token).width;
+        } else if (token.startsWith("//")) {
+          ctx.fillStyle = "#6b7280"; // Gray for comments
+          ctx.fillText(token, currentX, y);
+          currentX += ctx.measureText(token).width;
+        } else if (/^(import|from|export|default|function|const|new|return|class|interface|type|as)$/.test(token)) {
+          ctx.fillStyle = "#ec4899"; // Pink for keywords
+          ctx.fillText(token, currentX, y);
+          currentX += ctx.measureText(token).width;
+        } else if (/^[A-Z][a-zA-Z0-9]*$/.test(token)) {
+          ctx.fillStyle = "#f59e0b"; // Amber for components/classes
+          ctx.fillText(token, currentX, y);
+          currentX += ctx.measureText(token).width;
+        } else {
+          ctx.fillStyle = "#e2e8f0"; // Off-white for standard text
+          ctx.fillText(token, currentX, y);
+          currentX += ctx.measureText(token).width;
+        }
+      });
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updateTerminalCanvas = (time: number) => {
       if (!ctx) return;
 
-      // Add a new line every 0.8 seconds
-      if (time - lastLineTime > 0.8) {
-        const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        activeLines.push(randomSnippet);
-        if (activeLines.length > 15) {
-          activeLines.shift();
+      tick++;
+      const charsToType = Math.floor(tick / 1.2);
+      
+      let charCounter = charsToType;
+      let lineIdx = 0;
+      const tempTypedLines: string[] = [];
+
+      while (lineIdx < codeLines.length && charCounter > 0) {
+        const line = codeLines[lineIdx];
+        if (charCounter >= line.length + 1) {
+          tempTypedLines.push(line);
+          charCounter -= (line.length + 1);
+          lineIdx++;
+        } else {
+          tempTypedLines.push(line.substring(0, charCounter));
+          charCounter = 0;
         }
-        lastLineTime = time;
       }
 
-      // Draw background
-      ctx.fillStyle = "#09090e";
+      // Reset loop after finishing typing and showing complete state for a while
+      const totalCodeLength = codeLines.reduce((acc, l) => acc + l.length + 1, 0);
+      if (charsToType > totalCodeLength + 150) {
+        tick = 0;
+      }
+
+      // 1. Draw Main Background
+      ctx.fillStyle = "#09090b";
       ctx.fillRect(0, 0, textCanvas.width, textCanvas.height);
 
-      // Draw bezel details / scanlines
-      ctx.fillStyle = "rgba(6, 182, 212, 0.04)";
-      for (let y = 0; y < textCanvas.height; y += 4) {
-        ctx.fillRect(0, y, textCanvas.width, 2);
-      }
+      // 2. Draw Left Sidebar (File Explorer)
+      ctx.fillStyle = "#0f0f13";
+      ctx.fillRect(0, 0, 110, textCanvas.height - 20);
+      
+      // Sidebar separator border
+      ctx.fillStyle = "#1f1f2e";
+      ctx.fillRect(110, 0, 1, textCanvas.height - 20);
 
-      // Draw text
-      ctx.font = "bold 16px monospace";
-      ctx.fillStyle = "#06b6d4"; // Cyan text
+      // Title
+      ctx.font = "bold 9px monospace";
+      ctx.fillStyle = "#71717a";
+      ctx.fillText("PORTFOLIO", 10, 18);
 
-      activeLines.forEach((line, index) => {
-        const isCommandLine = line.startsWith("$") || line.includes("run");
-        ctx.fillStyle = isCommandLine ? "#6366f1" : "#06b6d4"; // Indigo for commands, Cyan for output
-        ctx.fillText(line, 20, 30 + index * 23);
+      // File Tree list
+      ctx.font = "10px monospace";
+      ctx.fillStyle = "#a1a1aa";
+      ctx.fillText("📁 components", 10, 36);
+      
+      // Active file highlighting
+      ctx.fillStyle = "rgba(6, 182, 212, 0.1)";
+      ctx.fillRect(5, 45, 100, 16);
+      ctx.fillStyle = "#06b6d4";
+      ctx.fillText("📄 HeroCanvas.tsx", 18, 56);
+      
+      ctx.fillStyle = "#a1a1aa";
+      ctx.fillText("📁 app", 10, 76);
+      ctx.fillText("📄 page.tsx", 18, 92);
+      ctx.fillText("📄 globals.css", 18, 108);
+      ctx.fillText("📄 package.json", 10, 126);
+
+      // 3. Draw Tabs Bar
+      ctx.fillStyle = "#0f0f13";
+      ctx.fillRect(111, 0, textCanvas.width - 111, 24);
+      
+      // Active tab (HeroCanvas.tsx)
+      ctx.fillStyle = "#09090b";
+      ctx.fillRect(111, 0, 110, 24);
+      ctx.fillStyle = "#06b6d4";
+      ctx.font = "bold 10px monospace";
+      ctx.fillText("HeroCanvas.tsx", 120, 15);
+      // active line
+      ctx.fillRect(111, 22, 110, 2);
+
+      // Inactive tab (globals.css)
+      ctx.fillStyle = "#71717a";
+      ctx.font = "10px monospace";
+      ctx.fillText("globals.css", 235, 15);
+
+      // Border bottom for tab bar
+      ctx.fillStyle = "#1f1f2e";
+      ctx.fillRect(111, 23, textCanvas.width - 111, 1);
+
+      // 4. Draw Editor Pane (Code Lines)
+      ctx.font = "11px monospace";
+      
+      // Draw Line Numbers & Code lines
+      tempTypedLines.forEach((line, index) => {
+        const yCoord = 42 + index * 16;
+        
+        // Line number
+        ctx.fillStyle = "#3f3f46";
+        ctx.fillText(String(index + 1).padStart(2, " "), 118, yCoord);
+        
+        // Highlighted code line
+        drawHighlightedText(line, 142, yCoord);
       });
 
-      // Draw blinking cursor
-      if (Math.floor(time * 2) % 2 === 0) {
-        const lastLineY = 30 + (activeLines.length - 1) * 23;
-        const lastLineText = activeLines[activeLines.length - 1] || "";
+      // Cursor blinking
+      if (tempTypedLines.length > 0) {
+        const lastLineIdx = tempTypedLines.length - 1;
+        const lastLineText = tempTypedLines[lastLineIdx];
+        ctx.font = "11px monospace";
         const textWidth = ctx.measureText(lastLineText).width;
-        ctx.fillStyle = "#06b6d4";
-        ctx.fillRect(20 + textWidth + 4, lastLineY - 14, 10, 16);
+        const cursorY = 42 + lastLineIdx * 16;
+        if (Math.floor(tick / 15) % 2 === 0) {
+          ctx.fillStyle = "#06b6d4";
+          ctx.fillRect(142 + textWidth + 1, cursorY - 9, 6, 11);
+        }
       }
+
+      // 5. Draw Right Panel (Antigravity Assistant)
+      const assistantX = 352;
+      const assistantWidth = textCanvas.width - assistantX;
+      
+      ctx.fillStyle = "#0c0d12";
+      ctx.fillRect(assistantX, 0, assistantWidth, textCanvas.height - 20);
+      
+      // Left border
+      ctx.fillStyle = "#1f1f2e";
+      ctx.fillRect(assistantX, 0, 1, textCanvas.height - 20);
+
+      // Assistant Header
+      ctx.fillStyle = "#11131e";
+      ctx.fillRect(assistantX + 1, 0, assistantWidth - 1, 24);
+      ctx.fillStyle = "#06b6d4";
+      ctx.font = "bold 9px monospace";
+      ctx.fillText("🤖 ANTIGRAVITY", assistantX + 10, 15);
+      
+      // Header border
+      ctx.fillStyle = "#1f1f2e";
+      ctx.fillRect(assistantX + 1, 23, assistantWidth - 1, 1);
+
+      // Assistant Log Steps
+      const logThresholds = [15, 60, 120, 180, 240, 300, 360];
+      ctx.font = "9px monospace";
+      
+      let logY = 38;
+      for (let i = 0; i < assistantLog.length; i++) {
+        if (charsToType >= logThresholds[i]) {
+          const logText = assistantLog[i];
+          if (logText.startsWith("User:")) {
+            ctx.fillStyle = "#a1a1aa";
+          } else if (logText.startsWith("Antigravity:")) {
+            ctx.fillStyle = "#06b6d4";
+          } else if (logText.startsWith("Tool:")) {
+            ctx.fillStyle = "#fbbf24";
+          } else {
+            ctx.fillStyle = "#10b981"; // Success status
+          }
+          
+          // Print logs with basic word wrapping for narrow panel
+          const words = logText.split(" ");
+          let currentLogLine = "";
+          words.forEach(word => {
+            const testLine = currentLogLine + word + " ";
+            const testWidth = ctx.measureText(testLine).width;
+            if (testWidth > assistantWidth - 16 && currentLogLine !== "") {
+              ctx.fillText(currentLogLine, assistantX + 8, logY);
+              logY += 12;
+              currentLogLine = word + " ";
+            } else {
+              currentLogLine = testLine;
+            }
+          });
+          ctx.fillText(currentLogLine, assistantX + 8, logY);
+          logY += 14;
+        }
+      }
+
+      // 6. Draw Bottom Status Bar
+      ctx.fillStyle = "#0d0e12";
+      ctx.fillRect(0, textCanvas.height - 20, textCanvas.width, 20);
+      
+      // Top border
+      ctx.fillStyle = "#1f1f2e";
+      ctx.fillRect(0, textCanvas.height - 20, textCanvas.width, 1);
+
+      // Glowing dot & status
+      ctx.beginPath();
+      ctx.arc(10, textCanvas.height - 10, 3, 0, Math.PI * 2);
+      ctx.fillStyle = "#06b6d4";
+      ctx.fill();
+
+      ctx.fillStyle = "#06b6d4";
+      ctx.font = "9px monospace";
+      ctx.fillText("Antigravity: ACTIVE", 18, textCanvas.height - 7);
+
+      ctx.fillStyle = "#71717a";
+      ctx.fillText("TypeScript JSX", textCanvas.width - 95, textCanvas.height - 7);
     };
 
     const screenTexture = new THREE.CanvasTexture(textCanvas);

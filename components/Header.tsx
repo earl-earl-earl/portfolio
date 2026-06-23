@@ -10,6 +10,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Philosophy", href: "#philosophy" },
+  { name: "Connect", href: "#contact" },
 ];
 
 const Header = () => {
@@ -30,7 +31,7 @@ const Header = () => {
       <header
         className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-background/70 backdrop-blur-md border-b border-border/40 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            ? "bg-background/70 backdrop-blur-md border-b border-border/40 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
             : "bg-transparent py-6"
         }`}
       >
@@ -38,15 +39,15 @@ const Header = () => {
           {/* Page Logo / Actual SVG Logo with Hover Animation */}
           <a href="#intro" className="flex items-center gap-2">
             <motion.div
-              className="cursor-pointer flex items-center justify-center relative w-10 h-10"
+              className="cursor-pointer flex items-center justify-center relative w-8 h-8"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Image
                 src="/images/logos/page-logo.svg"
                 alt="Logo"
-                width={40}
-                height={40}
+                width={32}
+                height={32}
                 className="w-full h-full object-contain"
                 priority
               />
