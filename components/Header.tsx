@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Intro", href: "#intro" },
@@ -34,68 +35,22 @@ const Header = () => {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          {/* Page Logo / Monogram SVG with Path Drawing Animation */}
+          {/* Page Logo / Actual SVG Logo with Hover Animation */}
           <a href="#intro" className="flex items-center gap-2">
-            <motion.svg
-              width="40"
-              height="40"
-              viewBox="0 0 50 50"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="cursor-pointer"
+            <motion.div
+              className="cursor-pointer flex items-center justify-center relative w-10 h-10"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Animated outer frame */}
-              <motion.rect
-                x="3"
-                y="3"
-                width="44"
-                height="44"
-                rx="10"
-                stroke="url(#accentGrad)"
-                strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
+              <Image
+                src="/images/logos/page-logo.svg"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                priority
               />
-              {/* Letter E */}
-              <motion.path
-                d="M 16 16 H 28 M 16 25 H 24 M 16 34 H 28 M 16 16 V 34"
-                stroke="currentColor"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
-              />
-              {/* Letter J */}
-              <motion.path
-                d="M 32 16 V 30 C 32 34, 29 37, 25 37"
-                stroke="url(#accentGrad)"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.2, ease: "easeInOut", delay: 0.8 }}
-              />
-              <defs>
-                <linearGradient id="accentGrad" x1="0" y1="0" x2="50" y2="50" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#06b6d4" />
-                  <stop offset="100%" stopColor="#6366f1" />
-                </linearGradient>
-              </defs>
-            </motion.svg>
-            <motion.span 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2 }}
-              className="text-lg font-clash font-semibold tracking-wide text-foreground hidden sm:block"
-            >
-              EARL JOHN
-            </motion.span>
+            </motion.div>
           </a>
 
           {/* Navigation Links with Shared Layout Pill Transition */}
@@ -126,9 +81,12 @@ const Header = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden sm:inline-flex items-center gap-1 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan hover:bg-accent-cyan/20 hover:border-accent-cyan/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300"
+              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-accent-cyan to-accent-indigo text-neutral-950 shadow-[0_4px_20px_rgba(6,182,212,0.2)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.4)] hover:brightness-110 transition-all duration-300 group"
             >
-              Resume <ArrowUpRight size={14} />
+              <span className="flex items-center gap-1.5 font-bold">
+                Resume
+                <ArrowUpRight size={13} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </motion.a>
 
             {/* Mobile Menu Toggle */}
@@ -169,9 +127,12 @@ const Header = () => {
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-1 px-6 py-3 rounded-full text-sm font-semibold tracking-wider uppercase border border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan hover:bg-accent-cyan/20 w-full max-w-[200px] justify-center transition-all duration-300"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-bold tracking-wider uppercase bg-gradient-to-r from-accent-cyan to-accent-indigo text-neutral-950 w-full max-w-[200px] shadow-[0_4px_20px_rgba(6,182,212,0.2)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.4)] hover:brightness-110 transition-all duration-300 group"
             >
-              Resume <ArrowUpRight size={16} />
+              <span className="flex items-center gap-1.5 font-bold">
+                Resume
+                <ArrowUpRight size={15} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </motion.a>
           </motion.div>
         )}
