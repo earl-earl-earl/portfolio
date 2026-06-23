@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiChevronDown, FiChevronUp, FiCpu, FiServer, FiShield, FiGithub, FiActivity, FiLock } from "react-icons/fi";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -44,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5 }}
-      className="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between gap-6 border border-border/40 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 overflow-hidden"
+      className="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between gap-6 border border-border/40 bg-white/2 hover:bg-white/4 transition-all duration-300 overflow-hidden"
     >
       <div className="space-y-4">
         {/* Header: Title, Icon, and Action Links */}
@@ -80,7 +81,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <div className="flex items-center gap-2">
             {project.isPrivate ? (
               <div 
-                className="p-2 rounded-full border border-border/30 bg-white/[0.01] text-muted-foreground/40 cursor-not-allowed"
+                className="p-2 rounded-full border border-border/30 bg-white/1 text-muted-foreground/40 cursor-not-allowed"
                 title="Private Repository"
               >
                 <FiLock className="w-4 h-4" />
@@ -172,7 +173,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Visual Mockup Placeholder */}
-        <div className="relative w-full h-[160px] rounded-xl border border-border/40 overflow-hidden bg-black/40 group/mockup">
+        <div className="relative w-full h-40 rounded-xl border border-border/40 overflow-hidden bg-black/40 group/mockup">
           {/* Header browser-like bar */}
           <div className="absolute top-0 left-0 right-0 h-6 bg-black/40 border-b border-border/20 flex items-center px-3 gap-1 z-10">
             <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
@@ -183,14 +184,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Premium visual gradient with glowing lines or image */}
           {project.imageUrl ? (
-            <img 
+            <Image 
               src={project.imageUrl} 
               alt={`${project.title} Preview`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="absolute inset-0 w-full h-full object-cover pt-6 opacity-60 group-hover/mockup:opacity-85 transition-opacity duration-300"
             />
           ) : (
             <>
-              <div className={`absolute inset-0 pt-6 flex items-center justify-center bg-gradient-to-br ${project.mockupGrad} opacity-30 group-hover/mockup:opacity-40 transition-opacity duration-300`} />
+              <div className={`absolute inset-0 pt-6 flex items-center justify-center bg-linear-to-br ${project.mockupGrad} opacity-30 group-hover/mockup:opacity-40 transition-opacity duration-300`} />
               <div className="absolute inset-0 pt-6 flex flex-col justify-center items-center gap-2 p-4 z-0">
                 <span className="text-xs font-mono tracking-wider font-semibold bg-black/60 px-3 py-1.5 rounded-full border border-white/5 text-foreground/90 shadow-md">
                   {project.title} UI Sandbox
@@ -206,7 +209,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Performance Metrics / Badges */}
         <div className="grid grid-cols-3 gap-2 pt-2">
           {project.metrics.map((metric) => (
-            <div key={metric.label} className="p-2 rounded-lg bg-white/[0.01] border border-border/30 text-center flex flex-col justify-center">
+            <div key={metric.label} className="p-2 rounded-lg bg-white/1 border border-border/30 text-center flex flex-col justify-center">
               <span className="text-xs font-mono font-bold text-accent-cyan">{metric.value}</span>
               <span className="text-[9px] text-muted-foreground uppercase tracking-wider mt-0.5">{metric.label}</span>
             </div>

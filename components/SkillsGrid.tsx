@@ -131,7 +131,7 @@ export default function SkillsGrid() {
               {activeCategory === category && (
                 <motion.div
                   layoutId="active-skill-tab"
-                  className="absolute inset-0 bg-gradient-to-r from-accent-cyan to-accent-indigo rounded-full z-0"
+                  className="absolute inset-0 bg-linear-to-r from-accent-cyan to-accent-indigo rounded-full z-0"
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
               )}
@@ -151,7 +151,7 @@ export default function SkillsGrid() {
       </div>
 
       {/* Grid of badges */}
-      <div className="relative min-h-[180px]">
+      <div className="relative min-h-45">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -165,15 +165,15 @@ export default function SkillsGrid() {
               <motion.div
                 key={skill.name}
                 whileHover={{ scale: 1.03, y: -2 }}
-                className="glass-panel rounded-xl p-3 flex items-center gap-3 border border-border/40 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300"
+                className="glass-panel rounded-xl p-3 flex items-center gap-3 border border-border/40 bg-white/2 hover:bg-white/4 transition-colors duration-300"
               >
                 {skill.svg ? (
-                  <div className="w-6 h-6 shrink-0 flex items-center justify-center bg-white/[0.04] rounded-lg p-1">
+                  <div className="w-6 h-6 shrink-0 flex items-center justify-center bg-white/4 rounded-lg p-1">
                     {skill.svg}
                   </div>
                 ) : (
                   (skill.iconSlug || skill.iconUrl) && (
-                    <div className="w-6 h-6 shrink-0 flex items-center justify-center bg-white/[0.04] rounded-lg p-1">
+                    <div className="w-6 h-6 shrink-0 flex items-center justify-center bg-white/4 rounded-lg p-1">
                       <Image
                         src={skill.iconUrl || `https://cdn.simpleicons.org/${skill.iconSlug}`}
                         alt={skill.name}

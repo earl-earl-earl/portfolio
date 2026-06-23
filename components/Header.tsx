@@ -109,7 +109,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[70px] z-40 bg-background/95 backdrop-blur-lg border-b border-border/40 md:hidden flex flex-col items-center justify-center gap-8 p-6"
+            className="fixed inset-0 top-17.5 z-40 bg-background/95 backdrop-blur-lg border-b border-border/40 md:hidden flex flex-col items-center justify-center gap-8 p-6"
           >
             <nav className="flex flex-col items-center gap-6">
               {navLinks.map((link) => (
@@ -127,7 +127,7 @@ const Header = () => {
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-bold tracking-wider uppercase bg-accent-cyan text-neutral-950 w-full max-w-[200px] shadow-[0_4px_20px_rgba(6,182,212,0.2)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.4)] hover:brightness-110 transition-all duration-300 group"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-bold tracking-wider uppercase bg-accent-cyan text-neutral-950 w-full max-w-50 shadow-[0_4px_20px_rgba(6,182,212,0.2)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.4)] hover:brightness-110 transition-all duration-300 group"
             >
               <span className="flex items-center gap-1.5 font-bold">
                 Resume

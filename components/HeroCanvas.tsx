@@ -317,7 +317,7 @@ export default function HeroCanvas() {
   return (
     <div 
       ref={containerRef} 
-      className="w-full h-[350px] sm:h-[450px] md:h-[500px] flex items-center justify-center relative select-none"
+      className="w-full h-87.5 sm:h-112.5 md:h-125 flex items-center justify-center relative select-none"
     />
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FiArrowRight, 
@@ -9,12 +9,10 @@ import {
   FiZap,
   FiActivity,
   FiBox,
-  FiGithub,
-  FiLinkedin,
   FiUser,
   FiMessageSquare
 } from "react-icons/fi";
-import { FaFileCode, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
 import { RiNextjsFill } from "react-icons/ri";
 import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
@@ -201,11 +199,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-20 px-6 md:px-12 max-w-[1400px] mx-auto w-full"
+        className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-20 px-6 md:px-12 max-w-350 mx-auto w-full"
       >
         {/* Glow ambient background assets */}
-        <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-accent-cyan/5 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent-indigo/5 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[20%] left-[10%] w-75 h-75 rounded-full bg-accent-cyan/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[10%] w-75 h-75 rounded-full bg-accent-indigo/5 blur-[120px] pointer-events-none" />
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-center z-10">
           <div className="lg:col-span-7 space-y-6 md:space-y-8 text-left">
@@ -216,7 +214,7 @@ export default function HomePage() {
               className="space-y-4"
             >
               <h1 className="text-5xl sm:text-7xl md:text-8xl font-clash font-extrabold text-foreground tracking-tight select-none">
-                Hello, I&apos;m <span className="bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent">Earl</span>!
+                Hello, I&apos;m <span className="bg-linear-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent">Earl</span>!
               </h1>
             </motion.div>
 
@@ -227,7 +225,7 @@ export default function HomePage() {
             >
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-clash font-medium text-muted-foreground flex items-center gap-x-3 gap-y-1 whitespace-nowrap">
                 <span>I am a</span>
-                <span className="relative inline-flex items-center overflow-hidden min-h-[1.2em] min-w-[320px] sm:min-w-[500px] md:min-w-[600px]">
+                <span className="relative inline-flex items-center overflow-hidden min-h-[1.2em] min-w-[320px] sm:min-w-125 md:min-w-150">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={roles[roleIndex]}
@@ -235,7 +233,7 @@ export default function HomePage() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -25, opacity: 0 }}
                       transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="absolute left-0 top-0 bottom-0 flex items-center bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent font-semibold whitespace-nowrap"
+                      className="absolute left-0 top-0 bottom-0 flex items-center bg-linear-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent font-semibold whitespace-nowrap"
                     >
                       {roles[roleIndex]}
                     </motion.span>
@@ -274,7 +272,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/2 hover:bg-white/5 hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
                 aria-label="GitHub Profile"
               >
                 <FaGithub size={20} />
@@ -285,7 +283,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/2 hover:bg-white/5 hover:border-muted-foreground/40 transition-all duration-300 text-muted-foreground hover:text-foreground"
                 aria-label="LinkedIn Profile"
               >
                 <FaLinkedin size={20} />
@@ -382,7 +380,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
+            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/1"
           >
             <div className="p-2.5 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan w-fit">
               <FiZap size={20} />
@@ -401,7 +399,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
+            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/1"
           >
             <div className="p-2.5 rounded-xl bg-accent-indigo/10 border border-accent-indigo/20 text-accent-indigo w-fit">
               <FiActivity size={20} />
@@ -420,9 +418,9 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
+            className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/1"
           >
-            <div className="p-2.5 rounded-xl bg-white/[0.05] border border-border w-fit text-foreground">
+            <div className="p-2.5 rounded-xl bg-white/5 border border-border w-fit text-foreground">
               <FiBox size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
@@ -456,7 +454,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-panel p-6 sm:p-10 rounded-3xl border border-border/40 bg-white/[0.01] relative overflow-hidden"
+          className="glass-panel p-6 sm:p-10 rounded-3xl border border-border/40 bg-white/1 relative overflow-hidden"
         >
           <AnimatePresence mode="wait">
             {!isSubmitSuccessful ? (
@@ -487,7 +485,7 @@ export default function HomePage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Jane Doe"
-                        className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
+                        className="w-full bg-white/1 border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
                       />
                       <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
                       <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
@@ -512,7 +510,7 @@ export default function HomePage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="jane@example.com"
-                        className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
+                        className="w-full bg-white/1 border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none disabled:opacity-50"
                       />
                       <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
                       <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
@@ -538,7 +536,7 @@ export default function HomePage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Hello Earl, let's collaborate on..."
-                      className="w-full bg-white/[0.01] border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none resize-none disabled:opacity-50"
+                      className="w-full bg-white/1 border border-border/40 hover:border-border/80 focus:border-accent-cyan/80 focus:ring-1 focus:ring-accent-cyan/20 rounded-xl pl-10 pr-4 py-3 text-sm transition-all outline-none resize-none disabled:opacity-50"
                     />
                     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-focus-within:border-accent-cyan/40 rounded-tl-xl transition-all" />
                     <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-focus-within:border-accent-cyan/40 rounded-br-xl transition-all" />
