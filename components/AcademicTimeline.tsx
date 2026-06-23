@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, Award, GraduationCap } from "lucide-react";
+import { FiCalendar, FiAward } from "react-icons/fi";
+import { FaGraduationCap } from "react-icons/fa6";
 
 interface TimelineItem {
   id: number;
@@ -62,11 +63,11 @@ export default function AcademicTimeline() {
             {/* Header info */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1 font-mono text-accent-cyan">
-                <Calendar size={12} />
+                <FiCalendar size={12} />
                 {item.period}
               </span>
               <span className="flex items-center gap-1">
-                <GraduationCap size={12} />
+                <FaGraduationCap size={12} />
                 {item.institution}
               </span>
             </div>
@@ -85,7 +86,7 @@ export default function AcademicTimeline() {
             <ul className="space-y-2 pt-2">
               {item.milestones.map((milestone, mIdx) => (
                 <li key={mIdx} className="flex items-start gap-2 text-xs text-muted-foreground/80 leading-normal">
-                  <Award size={12} className="text-accent-indigo shrink-0 mt-0.5" />
+                  <FiAward size={12} className="text-accent-indigo shrink-0 mt-0.5" />
                   <span>{milestone}</span>
                 </li>
               ))}

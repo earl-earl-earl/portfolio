@@ -3,56 +3,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { 
-  ArrowRight, 
-  Mail, 
-  CheckCircle,
-  FileCode2,
-  Zap,
-  Activity,
-  Box
-} from "lucide-react";
-
-const GithubIcon = ({ className = "w-[18px] h-[18px]" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const LinkedinIcon = ({ className = "w-[18px] h-[18px]" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
+  FiArrowRight, 
+  FiMail, 
+  FiCheckCircle,
+  FiZap,
+  FiActivity,
+  FiBox,
+  FiGithub,
+  FiLinkedin
+} from "react-icons/fi";
+import { FaFileCode } from "react-icons/fa6";
 import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
 import ProjectCard, { Project } from "@/components/ProjectCard";
+import dynamic from "next/dynamic";
+
+const HeroCanvas = dynamic(() => import("@/components/HeroCanvas"), {
+  ssr: false,
+});
+
 
 const roles = [
   "Full-Stack Developer",
   "Software Engineer",
   "Mobile App Developer",
   "Web Developer",
-  "AI/ML Engineer (Amateur)",
+  "AI/ML Engineer",
   "UI/UX Designer"
 ];
 
@@ -159,83 +136,90 @@ export default function HomePage() {
       {/* Hero Section */}
       <section 
         id="intro" 
-        className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-20 px-6 max-w-6xl mx-auto w-full"
+        className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden pt-20 px-6 md:px-12 max-w-[1400px] mx-auto w-full"
       >
         {/* Glow ambient background assets */}
         <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-accent-cyan/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-accent-indigo/5 blur-[120px] pointer-events-none" />
 
-        <div className="w-full space-y-6 md:space-y-8 z-10 text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-4"
-          >
-            <span className="text-sm font-mono tracking-widest text-accent-cyan uppercase bg-accent-cyan/5 border border-accent-cyan/10 px-3.5 py-1.5 rounded-full">
-              Available for Collaborations
-            </span>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-clash font-extrabold text-foreground tracking-tight select-none">
-              Hello, I&apos;m <span className="bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent">Earl</span>
-            </h1>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-clash font-medium text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span>I am a</span>
-              <span className="relative inline-block overflow-hidden min-h-[1.2em] min-w-[280px] sm:min-w-[420px]">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={roles[roleIndex]}
-                    initial={{ y: 25, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -25, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute left-0 bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent font-semibold"
-                  >
-                    {roles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed font-normal"
-          >
-            I architect high-performance, containerized web applications and distributed environments. Focused on write efficiency, atomic execution pipelines, and sleek, minimalist UX flows.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center gap-4 pt-4"
-          >
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-gradient-to-r from-accent-cyan to-accent-indigo text-black hover:opacity-95 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all duration-300 group"
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
+          <div className="lg:col-span-8 space-y-6 md:space-y-8 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-4"
             >
-              View My Works 
-              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.a>
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300"
+              <h1 className="text-5xl sm:text-7xl md:text-8xl font-clash font-extrabold text-foreground tracking-tight select-none">
+                Hello, I&apos;m <span className="bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent">Earl</span>!
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Get In Touch
-            </motion.a>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-clash font-medium text-muted-foreground flex items-center gap-x-3 gap-y-1 whitespace-nowrap">
+                <span>I am a</span>
+                <span className="relative inline-flex items-center overflow-hidden min-h-[1.2em] min-w-[320px] sm:min-w-[500px] md:min-w-[600px]">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={roles[roleIndex]}
+                      initial={{ y: 25, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -25, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="absolute left-0 top-0 bottom-0 flex items-center bg-gradient-to-r from-accent-cyan to-accent-indigo bg-clip-text text-transparent font-semibold whitespace-nowrap"
+                    >
+                      {roles[roleIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed font-normal"
+            >
+              I architect high-performance, containerized web applications and distributed environments. Focused on write efficiency, atomic execution pipelines, and sleek, minimalist UX flows.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex items-center gap-4 pt-4"
+            >
+              <motion.a
+                href="#projects"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-gradient-to-r from-accent-cyan to-accent-indigo text-black hover:opacity-95 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all duration-300 group"
+              >
+                View My Works 
+                <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-muted-foreground/40 transition-all duration-300"
+              >
+                Get In Touch
+              </motion.a>
+            </motion.div>
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="lg:col-span-4 flex justify-center items-center w-full relative"
+          >
+            <HeroCanvas />
           </motion.div>
         </div>
       </section>
@@ -340,7 +324,7 @@ export default function HomePage() {
             className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
           >
             <div className="p-2.5 rounded-xl bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan w-fit">
-              <Zap size={20} />
+              <FiZap size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
               Performance Ethos
@@ -359,7 +343,7 @@ export default function HomePage() {
             className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
           >
             <div className="p-2.5 rounded-xl bg-accent-indigo/10 border border-accent-indigo/20 text-accent-indigo w-fit">
-              <Activity size={20} />
+              <FiActivity size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
               Decoupled Architecture
@@ -378,7 +362,7 @@ export default function HomePage() {
             className="glass-panel p-6 rounded-2xl border border-border/40 space-y-4 bg-white/[0.01]"
           >
             <div className="p-2.5 rounded-xl bg-white/[0.05] border border-border w-fit text-foreground">
-              <Box size={20} />
+              <FiBox size={20} />
             </div>
             <h3 className="text-lg font-clash font-semibold text-foreground">
               Lightweight Footprint
@@ -486,7 +470,7 @@ export default function HomePage() {
                 className="py-12 flex flex-col items-center justify-center text-center space-y-4"
               >
                 <div className="p-3 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan animate-bounce">
-                  <CheckCircle size={32} />
+                  <FiCheckCircle size={32} />
                 </div>
                 <h3 className="text-2xl font-clash font-semibold text-foreground">
                   Message Synthesized
@@ -507,7 +491,7 @@ export default function HomePage() {
             <span>&copy; {new Date().getFullYear()} EARL JOHN</span>
             <span>|</span>
             <span className="flex items-center gap-1">
-              <FileCode2 size={12} />
+              <FaFileCode size={12} />
               Obsidian Core
             </span>
           </div>
@@ -521,7 +505,7 @@ export default function HomePage() {
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="GitHub Profile"
             >
-              <GithubIcon className="w-[18px] h-[18px]" />
+              <FiGithub className="w-[18px] h-[18px]" />
             </a>
             <a 
               href="https://linkedin.com" 
@@ -530,18 +514,18 @@ export default function HomePage() {
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="LinkedIn Profile"
             >
-              <LinkedinIcon className="w-[18px] h-[18px]" />
+              <FiLinkedin className="w-[18px] h-[18px]" />
             </a>
             <a 
               href="mailto:earl@example.com" 
               className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               aria-label="Send Email"
             >
-              <Mail size={18} />
+              <FiMail size={18} />
             </a>
           </div>
         </div>
       </footer>
     </div>
   );
-}
+}

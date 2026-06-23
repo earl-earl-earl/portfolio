@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import Image from "next/image";
 
 const navLinks = [
@@ -85,7 +85,7 @@ const Header = () => {
             >
               <span className="flex items-center gap-1.5 font-bold">
                 Resume
-                <ArrowUpRight size={13} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <FiArrowUpRight size={13} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </motion.a>
 
@@ -95,7 +95,7 @@ const Header = () => {
               className="md:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         </div>
@@ -131,7 +131,7 @@ const Header = () => {
             >
               <span className="flex items-center gap-1.5 font-bold">
                 Resume
-                <ArrowUpRight size={15} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <FiArrowUpRight size={15} className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </motion.a>
           </motion.div>
