@@ -98,7 +98,7 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
   // If no images provided, show fallback mockup container
   if (!images || images.length === 0) {
     return (
-      <div className="absolute inset-0 pt-6 flex flex-col justify-center items-center gap-2 p-4 text-center">
+      <div className="absolute inset-0 flex flex-col justify-center items-center gap-2 p-4 text-center">
         <span className="text-xs font-mono tracking-wider font-semibold bg-black/60 px-3 py-1.5 rounded-full border border-white/5 text-foreground/90 shadow-md">
           {title} Sandbox
         </span>
@@ -123,7 +123,7 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
       onClick={handleOpenLightbox}
     >
       {/* Slideshow Display */}
-      <div className="absolute inset-0 w-full h-full pt-6">
+      <div className="absolute inset-0 w-full h-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlideIndex}
@@ -147,13 +147,13 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
 
       {/* Darken Hover Overlay */}
       <div
-        className={`absolute inset-0 pt-6 bg-black transition-opacity duration-300 pointer-events-none ${
+        className={`absolute inset-0 bg-black transition-opacity duration-300 pointer-events-none ${
           isHovered ? "opacity-45" : "opacity-0"
         }`}
       />
 
       {/* Centered Click To View Alert */}
-      <div className="absolute inset-0 pt-6 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
           className={`flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-background font-mono text-xs font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
             isHovered ? "opacity-100 scale-100" : "opacity-0 scale-95"

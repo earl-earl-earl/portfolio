@@ -407,18 +407,6 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                       Visual Preview
                     </div>
                     <div className="relative w-full h-44 sm:h-52 rounded-xl border border-border/40 overflow-hidden bg-black/50 group/mockup">
-                      {/* Browser Chrome Bar */}
-                      <div className="absolute top-0 left-0 right-0 h-6 bg-black/40 border-b border-border/20 flex items-center px-3 gap-1 z-10">
-                        <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
-                        <div className="mx-auto w-[55%] h-3 rounded bg-white/5 border border-border/10 flex items-center justify-center">
-                          <span className="text-[8px] text-muted-foreground/75 truncate tracking-wider font-mono">
-                            {selectedProject.title.toLowerCase().replace(/\s+/g, "-")}.app
-                          </span>
-                        </div>
-                      </div>
-
                       <ProjectImagePreview images={selectedProject.imageUrls || []} title={selectedProject.title} />
                     </div>
                   </div>

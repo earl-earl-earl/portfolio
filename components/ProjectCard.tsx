@@ -169,17 +169,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.description}
         </p>
 
-        {/* Visual Mockup Placeholder */}
         <div className="relative w-full h-40 rounded-xl border border-border/40 overflow-hidden bg-black/40 group/mockup">
-          {/* Header browser-like bar */}
-          <div className="absolute top-0 left-0 right-0 h-6 bg-black/40 border-b border-border/20 flex items-center px-3 gap-1 z-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
-            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
-            <div className="mx-auto w-[60%] h-3 rounded bg-white/5 border border-border/10" />
-          </div>
-
-          {/* Premium visual gradient with glowing lines or image */}
           <ProjectImagePreview images={project.imageUrls || []} title={project.title} />
         </div>
 
