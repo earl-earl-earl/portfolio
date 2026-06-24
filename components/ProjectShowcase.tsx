@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import ProjectImagePreview from "./ProjectImagePreview";
 import { 
   FiExternalLink, 
   FiCpu, 
@@ -264,11 +264,6 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                       <h3 className="text-2xl sm:text-3xl font-clash font-bold text-foreground tracking-tight">
                         {selectedProject.title}
                       </h3>
-                      {selectedProject.isPrivate && (
-                        <span className="inline-flex items-center gap-1 text-[9px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 font-medium">
-                          <FiLock className="w-2.5 h-2.5" /> Private
-                        </span>
-                      )}
                     </div>
                     {/* Category pills */}
                     <div className="flex flex-wrap gap-1.5">
@@ -424,28 +419,7 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                         </div>
                       </div>
 
-                      {/* Mockup Preview Area */}
-                      {selectedProject.imageUrl ? (
-                        <Image 
-                          src={selectedProject.imageUrl} 
-                          alt={`${selectedProject.title} Preview`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="absolute inset-0 w-full h-full object-cover pt-6 opacity-60 group-hover/mockup:opacity-85 transition-opacity duration-300"
-                        />
-                      ) : (
-                        <>
-                          <div className={`absolute inset-0 pt-6 flex items-center justify-center bg-linear-to-br ${selectedProject.mockupGrad} opacity-30 group-hover/mockup:opacity-40 transition-opacity duration-300`} />
-                          <div className="absolute inset-0 pt-6 flex flex-col justify-center items-center gap-2 p-4 text-center">
-                            <span className="text-xs font-mono tracking-wider font-semibold bg-black/60 px-3 py-1.5 rounded-full border border-white/5 text-foreground/90 shadow-md">
-                              {selectedProject.title} Sandbox
-                            </span>
-                            <span className="text-[10px] text-muted-foreground font-mono">
-                              System Dashboard Mockup
-                            </span>
-                          </div>
-                        </>
-                      )}
+                      <ProjectImagePreview images={selectedProject.imageUrls || []} title={selectedProject.title} />
                     </div>
                   </div>
                 </div>

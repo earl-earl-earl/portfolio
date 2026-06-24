@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiChevronDown, FiChevronUp, FiCpu, FiServer, FiShield, FiGithub, FiActivity, FiLock } from "react-icons/fi";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import ProjectImagePreview from "./ProjectImagePreview";
 
 export interface Project {
   title: string;
@@ -16,6 +16,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
+  imageUrls?: string[];
   metrics: {
     label: string;
     value: string;
@@ -63,11 +64,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 <h3 className="text-xl font-clash font-semibold text-foreground tracking-tight">
                   {project.title}
                 </h3>
-                {project.isPrivate && (
-                  <span className="inline-flex items-center gap-1 text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-500 font-medium">
-                    <FiLock className="w-2.5 h-2.5" /> Private
-                  </span>
-                )}
               </div>
               <div className="flex flex-wrap gap-1.5 mt-1.5">
                 {project.tags.slice(0, 3).map((tag) => (
@@ -184,27 +180,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           {/* Premium visual gradient with glowing lines or image */}
-          {project.imageUrl ? (
-            <Image 
-              src={project.imageUrl} 
-              alt={`${project.title} Preview`}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="absolute inset-0 w-full h-full object-cover pt-6 opacity-60 group-hover/mockup:opacity-85 transition-opacity duration-300"
-            />
-          ) : (
-            <>
-              <div className={`absolute inset-0 pt-6 flex items-center justify-center bg-linear-to-br ${project.mockupGrad} opacity-30 group-hover/mockup:opacity-40 transition-opacity duration-300`} />
-              <div className="absolute inset-0 pt-6 flex flex-col justify-center items-center gap-2 p-4 z-0">
-                <span className="text-xs font-mono tracking-wider font-semibold bg-black/60 px-3 py-1.5 rounded-full border border-white/5 text-foreground/90 shadow-md">
-                  {project.title} UI Sandbox
-                </span>
-                <span className="text-[10px] text-muted-foreground font-mono">
-                  Screenshot Optimized Container
-                </span>
-              </div>
-            </>
-          )}
+          <ProjectImagePreview images={project.imageUrls || []} title={project.title} />
         </div>
 
         {/* Performance Metrics / Badges */}

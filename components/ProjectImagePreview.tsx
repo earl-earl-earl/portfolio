@@ -1,0 +1,248 @@
+"use client";
+
+import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
+import Image from "next/image";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronLeft, FiChevronRight, FiMaximize2, FiX } from "react-icons/fi";
+
+interface ProjectImagePreviewProps {
+  images: string[];
+  title: string;
+}
+
+export default function ProjectImagePreview({ images, title }: ProjectImagePreviewProps) {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  
+  // Use useSyncExternalStore to safely check if we are on the client side (mounted)
+  // without triggering a synchronous setState cascading render warning.
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+  
+  const slideshowIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+    setIsHovered(false);
+  };
+
+  // Slideshow effect on hover
+  useEffect(() => {
+    if (isHovered && images.length > 1) {
+      slideshowIntervalRef.current = setInterval(() => {
+        setCurrentSlideIndex((prev) => (prev + 1) % images.length);
+      }, 3000);
+    } else {
+      if (slideshowIntervalRef.current) {
+        clearInterval(slideshowIntervalRef.current);
+        slideshowIntervalRef.current = null;
+      }
+    }
+
+    return () => {
+      if (slideshowIntervalRef.current) {
+        clearInterval(slideshowIntervalRef.current);
+      }
+    };
+  }, [isHovered, images]);
+
+  // Lightbox key down navigation and lock scroll
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    // Prevent body scrolling
+    const originalStyle = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setLightboxIndex((prev) => (prev + 1) % images.length);
+      } else if (e.key === "ArrowLeft") {
+        setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+      } else if (e.key === "Escape") {
+        closeLightbox();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isLightboxOpen, images]);
+
+  const handleOpenLightbox = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Open lightbox starting at the current hovered slide index
+    setLightboxIndex(currentSlideIndex);
+    setIsLightboxOpen(true);
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // If no images provided, show fallback mockup container
+  if (!images || images.length === 0) {
+    return (
+      <div className="absolute inset-0 pt-6 flex flex-col justify-center items-center gap-2 p-4 text-center">
+        <span className="text-xs font-mono tracking-wider font-semibold bg-black/60 px-3 py-1.5 rounded-full border border-white/5 text-foreground/90 shadow-md">
+          {title} Sandbox
+        </span>
+        <span className="text-[10px] text-muted-foreground font-mono">
+          System Dashboard Mockup
+        </span>
+      </div>
+    );
+  }
+
+  // Active preview image source
+  const currentPreviewSrc = images[currentSlideIndex];
+
+  return (
+    <div
+      className="relative w-full h-full cursor-pointer overflow-hidden select-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setCurrentSlideIndex(0);
+      }}
+      onClick={handleOpenLightbox}
+    >
+      {/* Slideshow Display */}
+      <div className="absolute inset-0 w-full h-full pt-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlideIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.65 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={currentPreviewSrc}
+              alt={`${title} Preview ${currentSlideIndex + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority={currentSlideIndex === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Darken Hover Overlay */}
+      <div
+        className={`absolute inset-0 pt-6 bg-black transition-opacity duration-300 pointer-events-none ${
+          isHovered ? "opacity-45" : "opacity-0"
+        }`}
+      />
+
+      {/* Centered Click To View Alert */}
+      <div className="absolute inset-0 pt-6 flex items-center justify-center pointer-events-none">
+        <div
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-background font-mono text-xs font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
+            isHovered ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
+        >
+          <FiMaximize2 className="w-3.5 h-3.5" />
+          <span>Click to view</span>
+        </div>
+      </div>
+
+      {/* Lightbox Portal */}
+      {isLightboxOpen && mounted && createPortal(
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center"
+          onClick={(e) => {
+            e.stopPropagation();
+            closeLightbox();
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-accent-cyan/50 text-white hover:text-accent-cyan transition-all duration-200 cursor-pointer z-55"
+            aria-label="Close Lightbox"
+          >
+            <FiX size={16} />
+          </button>
+
+          {/* Left Arrow Button */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-accent-cyan/50 text-white hover:text-accent-cyan transition-all duration-200 cursor-pointer z-55"
+            aria-label="Previous Image"
+          >
+            <FiChevronLeft size={18} />
+          </button>
+
+          {/* Image Container */}
+          <div 
+            className="relative max-w-[85vw] max-h-[75vh] w-full h-full flex items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={lightboxIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25 }}
+                className="relative w-full h-full flex items-center justify-center"
+              >
+                <div className="relative w-full h-full max-w-300">
+                  <Image
+                    src={images[lightboxIndex]}
+                    alt={`${title} Lightbox ${lightboxIndex + 1}`}
+                    fill
+                    sizes="90vw"
+                    className="object-contain rounded-lg border border-white/5"
+                    priority
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={handleNext}
+            className="absolute right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-accent-cyan/50 text-white hover:text-accent-cyan transition-all duration-200 cursor-pointer z-55"
+            aria-label="Next Image"
+          >
+            <FiChevronRight size={18} />
+          </button>
+
+          {/* Image Counter & Title below the image */}
+          <div 
+            className="mt-6 flex flex-col items-center gap-1 select-none pointer-events-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="text-sm font-clash font-medium text-foreground tracking-wide">
+              {title}
+            </span>
+            <span className="text-xs font-mono text-muted-foreground bg-white/5 border border-white/10 px-3 py-1 rounded-full mt-1">
+              {lightboxIndex + 1} / {images.length}
+            </span>
+          </div>
+        </div>,
+        document.body
+      )}
+    </div>
+  );
+}

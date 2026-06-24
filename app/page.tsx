@@ -66,7 +66,12 @@ const projectsData: Project[] = [
       { label: "Mobile App Demo", url: "https://drive.google.com/drive/folders/11rMNHBWA0YmkEhJ5nkBPByA6KXDUd4Cr" },
       { label: "Web Portal Preview", url: "https://insurevis-web-portal.vercel.app/" }
     ],
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
+    imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop",
+    imageUrls: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1527474305487-b87b222841cc?q=80&w=600&auto=format&fit=crop"
+    ],
     metrics: [
       { label: "AI Accuracy", value: "75%+" },
       { label: "Components", value: "3 Parts" },
@@ -90,7 +95,12 @@ const projectsData: Project[] = [
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
     categories: ["Web", "Backend"],
     githubUrl: "https://github.com/earl-earl-earl",
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
+    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
+    imageUrls: [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop"
+    ],
     metrics: [
       { label: "Branch Coverage", value: "15+" },
       { label: "Analytics", value: "Real-time" },
@@ -115,7 +125,12 @@ const projectsData: Project[] = [
     tags: ["Next.js", "Expo", "Supabase", "TypeScript", "PayMongo"],
     categories: ["Full-Stack", "Web", "Mobile", "Backend"],
     githubUrl: "https://github.com/earl-earl-earl",
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
+    imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=600&auto=format&fit=crop",
+    imageUrls: [
+      "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600&auto=format&fit=crop"
+    ],
     metrics: [
       { label: "Tx Logic", value: "Atomic" },
       { label: "Sections", value: "5+ Areas" },
@@ -139,7 +154,12 @@ const projectsData: Project[] = [
     icon: "Cpu",
     tags: ["FastAPI", "Gemini AI", "Playwright", "Redis", "MongoDB"],
     categories: ["Full-Stack", "Web", "Backend", "AI / ML"],
-    imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
+    imageUrl: "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop",
+    imageUrls: [
+      "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=600&auto=format&fit=crop"
+    ],
     metrics: [
       { label: "Status", value: "Ongoing" },
       { label: "Engine", value: "Gemini AI" },
