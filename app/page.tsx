@@ -18,6 +18,7 @@ import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
 import ProjectCard, { Project } from "@/components/ProjectCard";
+import ProjectShowcase from "@/components/ProjectShowcase";
 import dynamic from "next/dynamic";
 
 const HeroCanvas = dynamic(() => import("@/components/HeroCanvas"), {
@@ -53,6 +54,7 @@ const projectsData: Project[] = [
     • Concurrent inference using ONNX Runtime with thread-safe serving.`,
     icon: "Shield",
     tags: ["Flutter", "Node.js", "Flask", "Detectron2", "Supabase"],
+    categories: ["Full-Stack", "Web", "Mobile", "Backend", "AI / ML"],
     githubUrl: "https://github.com/earl-earl-earl",
     githubLinks: [
       { label: "Mobile App (Flutter)", url: "https://github.com/earl-earl-earl/insurevis-mobile-app" },
@@ -86,6 +88,7 @@ const projectsData: Project[] = [
     • Secure PDF export functionality and CSV/XLSX data import/export systems.`,
     icon: "Activity",
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
+    categories: ["Web", "Backend"],
     githubUrl: "https://github.com/earl-earl-earl",
     imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
@@ -110,6 +113,7 @@ const projectsData: Project[] = [
     • Admin dashboard featuring Recharts analytics, nanny approvals, and calendar views.`,
     icon: "Activity",
     tags: ["Next.js", "Expo", "Supabase", "TypeScript", "PayMongo"],
+    categories: ["Full-Stack", "Web", "Mobile", "Backend"],
     githubUrl: "https://github.com/earl-earl-earl",
     imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
@@ -134,6 +138,7 @@ const projectsData: Project[] = [
     • Monorepo setup with Turborepo, shared type libraries, and automated CI/CD.`,
     icon: "Cpu",
     tags: ["FastAPI", "Gemini AI", "Playwright", "Redis", "MongoDB"],
+    categories: ["Full-Stack", "Web", "Backend", "AI / ML"],
     imageUrl: "https://placehold.co/600x400/09090b/a1a1aa.png?text=Image+Placeholder",
     metrics: [
       { label: "Status", value: "Ongoing" },
@@ -352,11 +357,7 @@ export default function HomePage() {
 
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
-          {projectsData.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
-        </div>
+        <ProjectShowcase projects={projectsData} />
       </section>
 
       {/* Philosophy Section */}

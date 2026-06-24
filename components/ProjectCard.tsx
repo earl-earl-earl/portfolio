@@ -12,6 +12,7 @@ export interface Project {
   longDescription: string;
   icon: string;
   tags: string[];
+  categories: string[];
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;

@@ -30,6 +30,9 @@ const skillsData: SkillCategory = {
     { name: "FastAPI", iconSlug: "fastapi" },
     { name: "Flask", iconSlug: "flask" },
     { name: "PostgreSQL", iconSlug: "postgresql" },
+    { name: "Supabase", iconSlug: "supabase" },
+    { name: "Firebase", iconSlug: "firebase" },
+    { name: "Appwrite", iconSlug: "appwrite" },
     { name: "Redis", iconSlug: "redis" },
     { name: "GraphQL", iconSlug: "graphql" },
     { name: "Prisma", iconSlug: "prisma" }
@@ -53,7 +56,6 @@ const skillsData: SkillCategory = {
     { name: "Git", iconSlug: "git" },
     { name: "GitHub Actions", iconSlug: "githubactions" },
     { name: "Supabase Edge", iconSlug: "supabase" },
-    { name: "Firebase", iconSlug: "firebase" },
     { name: "Vercel", iconSlug: "vercel" }
   ],
   "Testing": [
@@ -121,7 +123,14 @@ export default function SkillsGrid() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={(e) => {
+                setActiveCategory(category);
+                e.currentTarget.scrollIntoView({
+                  behavior: "smooth",
+                  block: "nearest",
+                  inline: "center",
+                });
+              }}
               className={`relative px-4 py-2 text-xs font-mono font-medium rounded-full cursor-pointer shrink-0 transition-all duration-300 ${
                 activeCategory === category
                   ? "text-background"
