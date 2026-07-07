@@ -17,7 +17,7 @@ import { RiNextjsFill } from "react-icons/ri";
 import Header from "@/components/Header";
 import AcademicTimeline from "@/components/AcademicTimeline";
 import SkillsGrid from "@/components/SkillsGrid";
-import ProjectCard, { Project } from "@/components/ProjectCard";
+import { Project } from "@/components/ProjectCard";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import dynamic from "next/dynamic";
 
@@ -41,7 +41,7 @@ const projectsData: Project[] = [
     description: "An AI-powered insurance claims platform spanning mobile, web, and ML infrastructure, enabling automated damage assessment and multi-role verification workflows.",
     longDescription: `MOBILE APPLICATION (Flutter):
     • Real-time AI damage detection with confidence scoring (75%+ accuracy).
-    • Smart camera system with live AI overlay for guided photo capture.
+    • Generate customizable, multi-format PDF reports for insurance submissions.
     • Offline-first architecture with automatic cloud synchronization.
     
     WEB PORTAL (Node.js/Express):
@@ -93,7 +93,7 @@ const projectsData: Project[] = [
     • Secure PDF export functionality and CSV/XLSX data import/export systems.`,
     icon: "Activity",
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
-    categories: ["Web", "Backend"],
+    categories: ["Full-Stack", "Web", "Backend"],
     githubUrl: "https://github.com/earl-earl-earl",
     imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
     imageUrls: [
