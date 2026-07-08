@@ -81,9 +81,9 @@ const projectsData: Project[] = [
   },
   {
     title: "NPS Survey & Analytics System",
-    description: "Enterprise-grade customer feedback platform built for Grand Canyon and 15+ branch locations. Automates NPS survey distribution via smart messaging channels with real-time analytics dashboards.",
+    description: "Enterprise-grade customer feedback platform built for a major retail client and 15+ branch locations. Automates NPS survey distribution via smart messaging channels with real-time analytics dashboards.",
     longDescription: `NPS SURVEY SYSTEM:
-    • Custom NPS survey platform serving Grand Canyon headquarters and 15+ branches.
+    • Custom NPS survey platform serving enterprise headquarters and 15+ branches.
     • Multi-channel survey distribution using Email (Mailchimp) and conversational 2-way SMS.
     • Automated 3-SMS conversational flow with 24-hour auto-close timeouts.
     

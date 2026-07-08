@@ -79,6 +79,7 @@ const skillsData: SkillCategory = {
   "Languages": [
     { name: "JavaScript & TypeScript", iconSlug: "typescript" },
     { name: "Python", iconSlug: "python" },
+    { name: "PHP", iconSlug: "php" },
     { name: "Java", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
     { name: "C++", iconSlug: "cplusplus" },
     { name: "C#", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" },
