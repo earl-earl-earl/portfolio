@@ -1,0 +1,97 @@
+[
+  {
+    "title": "InsureVis",
+    "description": "An AI-powered insurance claims platform spanning mobile, web, and ML infrastructure, enabling automated damage assessment and multi-role verification workflows.",
+    "longDescription": "MOBILE APPLICATION (Flutter):\n    • Real-time AI damage detection with confidence scoring (75%+ accuracy).\n    • Generate customizable, multi-format PDF reports for insurance submissions.\n    • Offline-first architecture with automatic cloud synchronization.\n    \n    WEB PORTAL (Node.js/Express):\n    • Multi-role verification system (Admin, Car Co, Insurance Co) with Supabase integration.\n    • Real-time document upload, review, and approval workflows.\n    • Comprehensive audit trail logging for security compliance.\n    \n    ML/CV API (Flask):\n    • Detectron2 models for vehicle part and damage segmentation.\n    • Concurrent inference using ONNX Runtime with thread-safe serving.",
+    "icon": "Shield",
+    "tags": ["Flutter", "Node.js", "Flask", "Detectron2", "Supabase"],
+    "categories": ["Full-Stack", "Web", "Mobile", "Backend", "AI / ML"],
+    "githubUrl": "https://github.com/earl-earl-earl",
+    "githubLinks": [
+      { "label": "Mobile App (Flutter)", "url": "https://github.com/earl-earl-earl/insurevis-mobile-app" },
+      { "label": "Web Portal (Express)", "url": "https://github.com/earl-earl-earl/insurevis-web-portal" },
+      { "label": "ML/CV API (Flask)", "url": "https://github.com/earl-john-rafael/insurevis-model-api" }
+    ],
+    "liveUrl": "https://insurevis-web-portal.vercel.app/",
+    "liveLinks": [
+      { "label": "Mobile App Demo", "url": "https://drive.google.com/drive/folders/11rMNHBWA0YmkEhJ5nkBPByA6KXDUd4Cr" },
+      { "label": "Web Portal Preview", "url": "https://insurevis-web-portal.vercel.app/" }
+    ],
+    "imageUrl": "/images/projects/insurevis/InsureVis Screenshot 1.jpg",
+    "imageUrls": [
+      "/images/projects/insurevis/InsureVis Screenshot 1.jpg",
+      "/images/projects/insurevis/InsureVis Screenshot 2.jpg",
+      "/images/projects/insurevis/InsureVis Screenshot 3.jpg"
+    ],
+    "metrics": [
+      { "label": "AI Accuracy", "value": "75%+" },
+      { "label": "Components", "value": "3 Parts" },
+      { "label": "Code Quality", "value": "85%" }
+    ],
+    "mockupGrad": "from-blue-950/40 via-slate-900/60 to-cyan-950/40"
+  },
+  {
+    "title": "NPS Survey & Analytics System",
+    "description": "Enterprise-grade customer feedback platform built for a major retail client and 15+ branch locations. Automates NPS survey distribution via smart messaging channels with real-time analytics dashboards.",
+    "longDescription": "NPS SURVEY SYSTEM:\n    • Custom NPS survey platform serving enterprise headquarters and 15+ branches.\n    • Multi-channel survey distribution using Email (Mailchimp) and conversational 2-way SMS.\n    • Automated 3-SMS conversational flow with 24-hour auto-close timeouts.\n    \n    DASHBOARDS & ANALYTICS:\n    • Real-time branch-level and global analytics dashboards with multi-dimensional filtering.\n    • Role-based access control system (Admin, Supervisor, Branch Manager, Staff).\n    • Secure PDF export functionality and CSV/XLSX data import/export systems.",
+    "icon": "Activity",
+    "tags": ["Next.js", "Supabase", "Tailwind CSS", "Mailchimp", "SMS Integration"],
+    "categories": ["Full-Stack", "Web", "Backend"],
+    "githubUrl": "https://github.com/earl-earl-earl",
+    "imageUrl": "/images/projects/nps/NPS Screenshot 1.jpg",
+    "imageUrls": [
+      "/images/projects/nps/NPS Screenshot 1.jpg",
+      "/images/projects/nps/NPS Screenshot 2.jpg",
+      "/images/projects/nps/NPS Screenshot 3.jpg"
+    ],
+    "metrics": [
+      { "label": "Branch Coverage", "value": "15+" },
+      { "label": "Analytics", "value": "Real-time" },
+      { "label": "Distribution", "value": "Multi-ch." }
+    ],
+    "mockupGrad": "from-blue-950/40 via-slate-900/60 to-emerald-950/40",
+    "isPrivate": true
+  },
+  {
+    "title": "BebeCare",
+    "description": "A cross-platform nanny booking platform connecting parents with vetted childcare providers, featuring real-time chat, escrow payments, and location-based discovery.",
+    "longDescription": "PLATFORM ARCHITECTURE:\n    • Cross-platform MVP (Android, iOS, Web) built with Expo and Next.js.\n    • Closed-loop virtual wallet with PayMongo integration and centavos-based ledger.\n    • Location-based nanny discovery with radius filtering and availability slots.\n    \n    CORE SYSTEMS & SECURITY:\n    • RBAC system (Parent, Nanny, Admin) with Supabase Auth and RLS policies.\n    • Secure payment architecture using atomic transactions for split bookings.\n    • Admin dashboard featuring Recharts analytics, nanny approvals, and calendar views.",
+    "icon": "Activity",
+    "tags": ["Next.js", "Expo", "Supabase", "TypeScript", "PayMongo"],
+    "categories": ["Full-Stack", "Web", "Mobile", "Backend"],
+    "githubUrl": "https://github.com/earl-earl-earl",
+    "imageUrl": "/images/projects/bebecare/BebeCare Screenshot 1.png",
+    "imageUrls": [
+      "/images/projects/bebecare/BebeCare Screenshot 1.png",
+      "/images/projects/bebecare/BebeCare Screenshot 2.png",
+      "/images/projects/bebecare/BebeCare Screenshot 3.png"
+    ],
+    "metrics": [
+      { "label": "Tx Logic", "value": "Atomic" },
+      { "label": "Sections", "value": "5+ Areas" },
+      { "label": "User Roles", "value": "3 Roles" }
+    ],
+    "mockupGrad": "from-teal-950/40 via-stone-900/60 to-rose-950/40",
+    "isPrivate": true
+  },
+  {
+    "title": "verifAI (In Development)",
+    "description": "An AI-powered fact-checking platform that scrapes trusted news outlets, processes claim evidence via Gemini AI, and streams verdicts with cited sources in real time.",
+    "longDescription": "SYSTEM ARCHITECTURE:\n    • Real-time fact-checking system leveraging FastAPI, Server-Sent Events, and WebSockets.\n    • Headless browser scraper worker built with Playwright to query trusted news outlets.\n    • Decision engine using Gemini AI (gemini-1.5-flash) to evaluate claims against evidence.\n    \n    INFRASTRUCTURE & DEPLOYMENT:\n    • Redis-backed async job queue and TTL cache for status streaming updates.\n    • Self-hosted MongoDB database deployed on Google Compute Engine.\n    • Monorepo setup with Turborepo, shared type libraries, and automated CI/CD.",
+    "icon": "Cpu",
+    "tags": ["FastAPI", "Gemini AI", "Playwright", "Redis", "MongoDB"],
+    "categories": ["Full-Stack", "Web", "Backend", "AI / ML"],
+    "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=600&auto=format&fit=crop"
+    ],
+    "metrics": [
+      { "label": "Status", "value": "Ongoing" },
+      { "label": "Engine", "value": "Gemini AI" },
+      { "label": "Pipeline", "value": "Async Jobs" }
+    ],
+    "mockupGrad": "from-slate-950/40 via-neutral-900/60 to-zinc-950/40"
+  }
+]

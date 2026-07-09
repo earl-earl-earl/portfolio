@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useSyncExternalStore } from "react"
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight, FiMaximize2, FiX } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiMaximize2, FiX, FiZoomIn, FiZoomOut } from "react-icons/fi";
 
 interface ProjectImagePreviewProps {
   images: string[];
@@ -16,6 +16,10 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
   const [isHovered, setIsHovered] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   
   // Use useSyncExternalStore to safely check if we are on the client side (mounted)
   // without triggering a synchronous setState cascading render warning.
@@ -30,7 +34,28 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
   const closeLightbox = () => {
     setIsLightboxOpen(false);
     setIsHovered(false);
+    setZoomLevel(1);
+    setIsDragging(false);
   };
+
+  // Reset zoom and drag state on slide change directly in event handlers.
+  // This avoids cascading renders from updating state inside a useEffect hook.
+
+  // Update container dimensions when lightbox is open or slide changes
+  useEffect(() => {
+    if (isLightboxOpen && containerRef.current) {
+      // Small timeout to allow the browser to lay out the element
+      const timer = setTimeout(() => {
+        if (containerRef.current) {
+          setDimensions({
+            width: containerRef.current.clientWidth,
+            height: containerRef.current.clientHeight
+          });
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isLightboxOpen, lightboxIndex]);
 
   // Slideshow effect on hover
   useEffect(() => {
@@ -63,8 +88,12 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") {
         setLightboxIndex((prev) => (prev + 1) % images.length);
+        setZoomLevel(1);
+        setIsDragging(false);
       } else if (e.key === "ArrowLeft") {
         setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+        setZoomLevel(1);
+        setIsDragging(false);
       } else if (e.key === "Escape") {
         closeLightbox();
       }
@@ -82,17 +111,23 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
     e.stopPropagation();
     // Open lightbox starting at the current hovered slide index
     setLightboxIndex(currentSlideIndex);
+    setZoomLevel(1);
+    setIsDragging(false);
     setIsLightboxOpen(true);
   };
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+    setZoomLevel(1);
+    setIsDragging(false);
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setLightboxIndex((prev) => (prev + 1) % images.length);
+    setZoomLevel(1);
+    setIsDragging(false);
   };
 
   // If no images provided, show fallback mockup container
@@ -111,6 +146,9 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
 
   // Active preview image source
   const currentPreviewSrc = images[currentSlideIndex];
+
+  const dragLimitX = ((zoomLevel - 1) * dimensions.width) / 2;
+  const dragLimitY = ((zoomLevel - 1) * dimensions.height) / 2;
 
   return (
     <div
@@ -203,17 +241,47 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
-                className="relative w-full h-full flex items-center justify-center"
+                className="relative w-full h-full max-w-300 flex items-center justify-center overflow-hidden"
               >
-                <div className="relative w-full h-full max-w-300">
-                  <Image
-                    src={images[lightboxIndex]}
-                    alt={`${title} Lightbox ${lightboxIndex + 1}`}
-                    fill
-                    sizes="90vw"
-                    className="object-contain rounded-lg border border-white/5"
-                    priority
-                  />
+                <div 
+                  ref={containerRef}
+                  className="relative w-full h-full overflow-hidden rounded-lg border border-white/5"
+                >
+                  <motion.div
+                    drag={zoomLevel > 1}
+                    dragConstraints={{
+                      left: -dragLimitX,
+                      right: dragLimitX,
+                      top: -dragLimitY,
+                      bottom: dragLimitY
+                    }}
+                    dragElastic={0.15}
+                    animate={{
+                      scale: zoomLevel,
+                      x: zoomLevel === 1 ? 0 : undefined,
+                      y: zoomLevel === 1 ? 0 : undefined
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    onDragStart={() => setIsDragging(true)}
+                    onDragEnd={() => setIsDragging(false)}
+                    onTap={() => {
+                      setZoomLevel((prev) => (prev > 1 ? 1 : 2));
+                    }}
+                    className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+                    style={{ 
+                      cursor: zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "pointer",
+                      touchAction: "none"
+                    }}
+                  >
+                    <Image
+                      src={images[lightboxIndex]}
+                      alt={`${title} Lightbox ${lightboxIndex + 1}`}
+                      fill
+                      sizes="90vw"
+                      className="object-contain select-none pointer-events-none"
+                      priority
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -228,9 +296,42 @@ export default function ProjectImagePreview({ images, title }: ProjectImagePrevi
             <FiChevronRight size={18} />
           </button>
 
+          {/* Zoom Slider Control */}
+          <div 
+            className="mt-4 flex items-center gap-3 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 select-none z-55 pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setZoomLevel((prev) => Math.max(1, prev - 0.2))}
+              className="text-white/60 hover:text-accent-cyan transition-colors"
+              title="Zoom Out"
+            >
+              <FiZoomOut size={16} />
+            </button>
+            <input
+              type="range"
+              min="1"
+              max="3"
+              step="0.05"
+              value={zoomLevel}
+              onChange={(e) => setZoomLevel(parseFloat(e.target.value))}
+              className="w-32 sm:w-48 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-accent-cyan outline-none"
+            />
+            <button
+              onClick={() => setZoomLevel((prev) => Math.min(3, prev + 0.2))}
+              className="text-white/60 hover:text-accent-cyan transition-colors"
+              title="Zoom In"
+            >
+              <FiZoomIn size={16} />
+            </button>
+            <span className="text-[10px] font-mono text-muted-foreground w-8 text-right">
+              {zoomLevel.toFixed(1)}x
+            </span>
+          </div>
+
           {/* Image Counter & Title below the image */}
           <div 
-            className="mt-6 flex flex-col items-center gap-1 select-none pointer-events-none"
+            className="mt-4 flex flex-col items-center gap-1 select-none pointer-events-none"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-sm font-clash font-medium text-foreground tracking-wide">
