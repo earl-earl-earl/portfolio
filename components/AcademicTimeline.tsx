@@ -16,7 +16,7 @@ const educationData: TimelineItem[] = [
   {
     id: 1,
     institution: "West Visayas State University",
-    degree: "Bachelor of Science in Computer Science",
+    degree: "Bachelor of Science in Information Technology",
     period: "2022 - 2026"
   }
 ];
