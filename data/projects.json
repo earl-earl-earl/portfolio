@@ -93,5 +93,24 @@
       { "label": "Pipeline", "value": "Async Jobs" }
     ],
     "mockupGrad": "from-slate-950/40 via-neutral-900/60 to-zinc-950/40"
+  },
+  {
+    "title": "INNO Webpage",
+    "description": "A high-performance, responsive front-end landing page built for INNO. Engineered with custom-structured WordPress templates and Elementor sections designed to elevate brand standards and optimization scores.",
+    "longDescription": "FRONT-END ARCHITECTURE & CMS (WordPress):\n    • Designed custom page templates following modern semantic standards using WordPress.\n    • Created highly responsive, high-converting landing page layouts tailored to client branding guidelines.\n    • Structured navigation flows and accessible section hierarchies optimized for user discovery.\n    \n    VISUAL EDITING & LAYOUT (Elementor):\n    • Engineered custom Elementor containers and widgets for advanced responsive controls.\n    • Integrated smooth entrance motion effects, hover states, and dynamic typography.\n    • Applied custom CSS overrides to eliminate bloated builder styles and unnecessary layout wrappers.\n    \n    PERFORMANCE & METRICS TUNING:\n    • Compressed media assets and implemented advanced lazy-loading scripts to decrease page size.\n    • Configured local page-level caching and SEO title/description meta tagging.\n    • Achieved outstanding responsiveness, layout stability, and PageSpeed metrics.",
+    "icon": "Activity",
+    "tags": ["WordPress", "Elementor", "CSS3", "Responsive Design", "SEO"],
+    "categories": ["Web"],
+    "imageUrl": "/images/projects/inno-web/INNO Screenshot 1.png",
+    "imageUrls": [
+      "/images/projects/inno-web/INNO Screenshot 1.png"
+    ],
+    "metrics": [
+      { "label": "Page Speed", "value": "95+" },
+      { "label": "Load Time", "value": "< 1.2s" },
+      { "label": "Responsiveness", "value": "100%" }
+    ],
+    "mockupGrad": "from-emerald-950/40 via-slate-900/60 to-teal-950/40",
+    "isPrivate": true
   }
 ]
