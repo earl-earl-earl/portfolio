@@ -120,7 +120,9 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-clash font-medium text-muted-foreground flex items-center gap-x-3 gap-y-1 whitespace-nowrap">
-                <span>I am a</span>
+                <span>
+                  {/^[aeiou]/i.test(roles[roleIndex]) && !/^ui/i.test(roles[roleIndex]) ? "I am an" : "I am a"}
+                </span>
                 <span className="relative inline-flex items-center overflow-hidden min-h-[1.2em] min-w-[320px] sm:min-w-125 md:min-w-150">
                   <AnimatePresence mode="wait">
                     <motion.span
