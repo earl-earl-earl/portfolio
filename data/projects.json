@@ -112,5 +112,29 @@
     ],
     "mockupGrad": "from-emerald-950/40 via-slate-900/60 to-teal-950/40",
     "isPrivate": true
+  },
+  {
+    "title": "SmartStock",
+    "description": "A modern, real-time inventory tracking solution for businesses to manage stock levels, sales transactions, and generate analytical reports.",
+    "longDescription": "INVENTORY & SALES MANAGEMENT:\n    • Track and manage product stock levels in real-time.\n    • Monitor sales transactions and historical records.\n    \n    ANALYTICS & REPORTING:\n    • Generate comprehensive business reports and stock analytics.\n    • Built with a modern, responsive dashboard UI with sidebar navigation.\n    \n    SECURITY & AUTHENTICATION:\n    • Appwrite-powered secure login, signup, and protected route access.\n    • Full type safety using TypeScript and optimized styling with Tailwind CSS.\n\n    DEMO CREDENTIALS:\n    • Email: test@gmail.com\n    • Password: Test12345",
+    "icon": "Server",
+    "tags": ["Next.js", "Appwrite", "TypeScript", "Tailwind CSS"],
+    "categories": ["Full-Stack", "Web", "Backend"],
+    "githubUrl": "https://github.com/earl-earl-earl/inventory-sales-tracker",
+    "liveUrl": "https://smartstock-web.vercel.app/",
+    "imageUrl": "/images/projects/smartstock/SmartStock Screenshot 1.png",
+
+    "imageUrls": [
+      "/images/projects/smartstock/SmartStock Screenshot 1.png",
+      "/images/projects/smartstock/SmartStock Screenshot 2.png",
+      "/images/projects/smartstock/SmartStock Screenshot 3.png"
+    ],
+    "metrics": [
+      { "label": "Data Sync", "value": "Real-time" },
+      { "label": "Backend", "value": "Appwrite" },
+      { "label": "Type Safety", "value": "100%" }
+    ],
+    "mockupGrad": "from-indigo-950/40 via-slate-900/60 to-violet-950/40"
   }
 ]
+
